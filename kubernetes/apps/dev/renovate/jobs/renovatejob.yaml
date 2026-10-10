@@ -6,7 +6,7 @@ metadata:
   name: renovate-github
 spec:
   discoveryFilters:
-    - "ZPeppler/iac"
+    - "ZPeppler/k8s-cluster"
   provider:
     name: github
   extraEnv:
