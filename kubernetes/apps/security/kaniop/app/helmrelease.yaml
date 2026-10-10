@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kaniop
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: kaniop
+  interval: 30m
+  values:
+    deploymentAnnotations:
+      reloader.stakater.com/auto: "true"
+    webhook:
+      enabled: true
+    metrics:
+      enabled: true
+      serviceMintor:
+        enabled: true
+      dashboards:
+        enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 256Mi

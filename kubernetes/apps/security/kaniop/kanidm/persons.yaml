@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/kaniop.rs/kanidmpersonaccount_v1beta1.json
+apiVersion: kaniop.rs/v1beta1
+kind: KanidmPersonAccount
+metadata:
+  name: ${KANIDM_USERNAME}
+spec:
+  kanidmRef:
+    name: kanidm
+    namespace: security
+  personAttributes:
+    displayname: ${KANIDM_DISPLAYNAME}
+    legalname: ${KANIDM_LEGALNAME}
+    mail:
+      - ${KANIDM_EMAIL}
+      - ${KANIDM_EMAIL2}
+  posixAttributes:
+    loginshell: /run/current-system/sw/bin/zsh

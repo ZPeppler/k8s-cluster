@@ -1,0 +1,73 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/kaniop.rs/kanidmgroup_v1beta1.json
+apiVersion: kaniop.rs/v1beta1
+kind: KanidmGroup
+metadata:
+  name: k8s-admin
+spec:
+  kanidmRef:
+    name: kanidm
+    namespace: security
+  members:
+    - ${KANIDM_USERNAME}
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/kaniop.rs/kanidmgroup_v1beta1.json
+apiVersion: kaniop.rs/v1beta1
+kind: KanidmGroup
+metadata:
+  name: unix-login
+spec:
+  kanidmRef:
+    name: kanidm
+    namespace: security
+  members:
+    - ${KANIDM_USERNAME}
+  posixAttributes:
+    gidnumber: 1001
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/kaniop.rs/kanidmgroup_v1beta1.json
+apiVersion: kaniop.rs/v1beta1
+kind: KanidmGroup
+metadata:
+  name: sys-admin
+spec:
+  kanidmRef:
+    name: kanidm
+    namespace: security
+  members:
+    - ${KANIDM_USERNAME}
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/kaniop.rs/kanidmgroup_v1beta1.json
+apiVersion: kaniop.rs/v1beta1
+kind: KanidmGroup
+metadata:
+  name: grafana-user
+spec:
+  kanidmRef:
+    name: kanidm
+    namespace: security
+  members:
+    - ${KANIDM_USERNAME}
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/kaniop.rs/kanidmgroup_v1beta1.json
+apiVersion: kaniop.rs/v1beta1
+kind: KanidmGroup
+metadata:
+  name: git-user
+spec:
+  kanidmRef:
+    name: kanidm
+    namespace: security
+  members:
+    - ${KANIDM_USERNAME}
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/kaniop.rs/kanidmgroup_v1beta1.json
+apiVersion: kaniop.rs/v1beta1
+kind: KanidmGroup
+metadata:
+  name: flux-admin
+spec:
+  kanidmRef:
+    name: kanidm
+    namespace: security
+  members:
+    - ${KANIDM_USERNAME}
