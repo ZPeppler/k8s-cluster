@@ -1,0 +1,92 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  labels:
+    dashboards: grafana
+spec:
+  config:
+    analytics:
+      check_for_updates: "false"
+      check_for_plugin_updates: "false"
+      feedback_links_enabled: "false"
+      reporting_enabled: "false"
+    auth:
+      disable_login_form: "false"
+    auth.generic_oauth:
+      enabled: "true"
+      name: "Kanidm"
+      allow_sign_up: "true"
+      client_id: "grafana-instance"
+      scopes: "openid profile email groups"
+      auth_url: "https://idm.${SECRET_DOMAIN}/ui/oauth2"
+      token_url: "https://idm.${SECRET_DOMAIN}/oauth2/token"
+      api_url: "https://idm.${SECRET_DOMAIN}/grafana-instance/userinfo"
+      login_attribute_path: "preferred_username"
+      name_attribute_path: "name"
+      groups_attribute_path: "groups"
+      role_attribute_path: "contains(groups, 'grafana-admins') && 'Admin' || contains(groups, 'grafana-editors') && 'Editor' || 'Viewer'"
+    log:
+      mode: console
+    metrics:
+      enabled: "true"
+    news:
+      news_feed_enabled: "false"
+    plugins:
+      plugin_admin_enabled: "false"
+    security:
+      angular_support_enabled: "true"
+    server:
+      enable_gzip: "true"
+      domain: grafana.${SECRET_DOMAIN}
+      root_url: https://grafana.${SECRET_DOMAIN}
+      enforce_domain: "false"
+  disableDefaultAdminSecret: true
+  disableDefaultSecurityContext: All
+  deployment:
+    spec:
+      strategy:
+        type: Recreate
+      template:
+        spec:
+          containers:
+            - name: grafana
+              env:
+                - name: GF_SECURITY_ADMIN_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-admin-secret
+                      key: admin-password
+                - name: GF_SECURITY_ADMIN_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-admin-secret
+                      key: admin-user
+                - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-instance-kanidm-oauth2-credentials
+                      key: secret
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities:
+                  drop:
+                    - ALL
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 999
+            runAsGroup: 999
+            fsGroup: 999
+            fsGroupChangePolicy: OnRootMismatch
+          volumes:
+            - name: grafana-data
+              persistentVolumeClaim:
+                claimName: grafana-pvc
+  persistentVolumeClaim:
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 4Gi
