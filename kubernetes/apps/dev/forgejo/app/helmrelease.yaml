@@ -56,7 +56,7 @@ spec:
           autoDiscoverUrl: https://idm.${SECRET_DOMAIN}/oauth2/openid/forgejo/.well-known/openid-configuration
           existingSecret: forgejo-kanidm-oauth2-credentials
           groupClaimName: groups
-          adminGroup: sys_admin@idm.${SECRET_DOMAIN}
+          adminGroup: sys-admin@idm.${SECRET_DOMAIN}
           scopes: profile email groups
     httpRoute:
       enabled: false
