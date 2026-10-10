@@ -1,10 +1,56 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: ["github>home-operations/renovate-presets#8.1.0"],
+  hostRules: [
+    {
+      matchHost: "code.forgejo.org",
+      hostType: "docker",
+      enabled: true,
+    },
+  ],
   schedule: ["every weekend"],
-  mise: {
-    managerFilePatterns: ["/^\\.mise/conf\\.d/[^/]+\\.toml$/"],
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ["before 3am on the first day of the month"],
+    commitMessageExtra: "({{manager}})",
+    additionalBranchPrefix: "{{manager}}-",
   },
+  customDatasources: {
+    "talos-factory": {
+      defaultRegistryUrlTemplate: "https://factory.talos.dev/versions",
+      format: "json",
+      transformTemplates: ['{"releases": [$.{"version": $}]}'],
+    },
+  },
+  customManagers: [
+    {
+      customType: "regex",
+      description: ["Process custom dependencies"],
+      fileMatch: ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$", "(^|/)talos/.+\\.ya?ml(?:\\.j2)?$"],
+      matchStrings: [
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?( repository=(?<registryUrl>\\S+))?\\n.+: (&\\S+\\s)?(?<currentValue>\\S+)",
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)",
+      ],
+      datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+    },
+    {
+      // File pattern targets the `talos/` directory convention used by
+      // home-operations/cluster-template and similar layouts. Override
+      // `managerFilePatterns` if your Talos configs live elsewhere.
+      description: "Process Talos Factory installer images and topf talosVersion",
+      customType: "regex",
+      managerFilePatterns: ["/talos\\/.*\\.ya?ml(?:\\.j2)?$/"],
+      matchStrings: [
+        "factory\\.talos\\.dev\\/[^/]+\\/[^:]+:(?<currentValue>v\\S+)",
+        // topf.yaml `talosVersion:` (bare or v-prefixed; topf trims the leading v)
+        "talosVersion:\\s*[\"']?(?<currentValue>v?[0-9][^\"'\\s]*)",
+      ],
+      datasourceTemplate: "custom.talos-factory",
+      versioningTemplate: "semver",
+      depNameTemplate: "siderolabs/talos",
+    },
+  ],
   packageRules: [
     {
       description: "GitHub Actions Group",
@@ -16,16 +62,25 @@
       description: "Mise Tools Group",
       matchManagers: ["mise"],
       groupName: "mise tools",
+      groupSlug: "mise-tools",
       minimumReleaseAge: "3 days",
     },
     {
       description: "Talos Group",
       groupName: "talos",
-      matchPackageNames: ["siderolabs/talos"],
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
-      },
-      minimumGroupSize: 2,
+      matchPackageNames: ["ghcr.io/siderolabs/installer", "siderolabs/talos", "talosctl"],
+      minimumGroupSize: 3,
+    },
+    {
+      description: "Ignore factory.talos.dev images matched by generic managers; the custom manager above owns them",
+      matchDatasources: ["docker"],
+      matchPackageNames: ["/^factory\\.talos\\.dev\\//"],
+      enabled: false,
+    },
+    {
+      matchDatasources: ["custom.talos-factory"],
+      semanticCommitScope: "container",
+      commitMessageTopic: "{{depName}}",
     },
     {
       description: "Flux Operator Group",

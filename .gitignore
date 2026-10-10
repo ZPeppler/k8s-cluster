@@ -23,3 +23,5 @@ __pycache__/
 Thumbs.db
 /talos/output/
 /talos/rendered/
+/archive
+/test-runs
