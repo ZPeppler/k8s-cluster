@@ -25,7 +25,7 @@ spec:
       login_attribute_path: "preferred_username"
       name_attribute_path: "name"
       groups_attribute_path: "groups"
-      role_attribute_path: "contains(groups, 'grafana-admins') && 'Admin' || contains(groups, 'grafana-editors') && 'Editor' || 'Viewer'"
+      role_attribute_path: "contains(groups, 'sys-admin') && 'GrafanaAdmin' || contains(groups, 'grafana-editors') && 'Editor' || 'Viewer'"
     log:
       mode: console
     metrics:
