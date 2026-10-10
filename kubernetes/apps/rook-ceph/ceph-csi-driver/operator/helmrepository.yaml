@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: ceph-csi-drivers
+spec:
+  interval: 1h0m0s
+  url: https://ceph.github.io/ceph-csi-operator
