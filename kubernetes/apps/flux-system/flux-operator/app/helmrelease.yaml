@@ -8,6 +8,26 @@ spec:
     kind: OCIRepository
     name: flux-operator
   interval: 1h
+  valuesFrom:
+    - kind: Secret
+      name: flux-operator-kanidm-oauth2-credentials
+      valuesKey: secret
+      targetPath: web.config.authentication.oauth2.clientSecret
   values:
     serviceMonitor:
       create: true
+    web:
+      config:
+        baseURL: https://flux.${SECRET_DOMAIN}
+        authentication:
+          type: OAuth2
+          oauth2:
+            provider: OIDC
+            clientID: flux-operator
+            issuerURL: https://idm.${SECRET_DOMAIN}/oauth2/openid/flux-operator
+            scopes:
+              - openid
+              - email
+              - profile
+              - groups
+              - offline_access
