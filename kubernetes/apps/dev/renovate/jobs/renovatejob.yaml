@@ -1,0 +1,30 @@
+---
+# yaml-language-server: $schema=https://crd.movishell.pl/renovate-operator.mogenius.com/renovatejob_v1alpha1.json
+apiVersion: renovate-operator.mogenius.com/v1alpha1
+kind: RenovateJob
+metadata:
+  name: renovate-github
+spec:
+  discoveryFilters:
+    - "ZPeppler/iac"
+  provider:
+    name: github
+  extraEnv:
+    - name: LOG_LEVEL
+      value: debug
+    - name: RENOVATE_ALLOWED_UNSAFE_EXECUTIONS
+      value: '["goGenerate", "mise"]'
+    - name: RENOVATE_ALLOWED_COMMANDS
+      value: '["^helm-docs ", "^helm-schema "]'
+    - name: RENOVATE_REDIS_URL
+      value: redis://renovate-operator-dragonfly.dev.svc.cluster.local:6379/1
+  image: ghcr.io/renovatebot/renovate:44.147.0
+  parallelism: 5
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  schedule: 0 * * * *
+  secretRef: renovate-bot-token
+  webhook:
+    enabled: true

@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app forgejo
+  namespace: &namespace dev
+spec:
+  components:
+    - ../../../../components/dragonfly
+    - ../../../../components/kanidm
+    - ../../../../components/storage
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/apps/dev/forgejo/app
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
+    substitute:
+      APP: *app
+      APP_REQUEST: 100Gi
+      KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/forgejo.svg
+      KANIDM_GROUP: git-user
+      KANIDM_ORIGIN_HOST: git
+      KANIDM_REDIRECT_PATH: user/oauth2/kanidm/callback
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: *namespace
+  wait: true
+  interval: 24h
+  retryInterval: 1m

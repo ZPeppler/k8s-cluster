@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://crd.cloudjur.com/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app harbor
+  namespace: dev
+spec:
+  components:
+    - ../../../../components/dragonfly
+    - ../../../../components/kanidm
+    - ../../../../components/rook-ceph
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/apps/dev/harbor/app
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
+    substitute:
+      APP: *app
+      APP_REQUEST: 10Gi
+      KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/forgejo.svg
+      KANIDM_CLIENT_ID_KEY: *app
+      KANIDM_CLIENT_SECRET_KEY: HARBOR_SECRET_KEY
+      KANIDM_GROUP: git-user
+      KANIDM_ORIGIN_HOST: harbor
+      KANIDM_REDIRECT_PATH: user/oauth2/kanidm/callback
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: dev
+  wait: true
+  interval: 24h
+  retryInterval: 1m
