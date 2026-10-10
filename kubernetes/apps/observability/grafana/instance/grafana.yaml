@@ -26,8 +26,8 @@ spec:
       name_attribute_path: "name"
       groups_attribute_path: "groups"
       role_attribute_path: "contains(groups[*], 'sys-admin') && 'GrafanaAdmin' || 'Viewer'"
-      allow_assign_grafana_admin: true
-      skip_org_role_sync: false
+      allow_assign_grafana_admin: "true"
+      skip_org_role_sync: "false"
     log:
       mode: console
     metrics:
