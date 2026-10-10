@@ -4,5 +4,5 @@ namespace: system-upgrade
 components:
   - ../../components/namespace
   - ../../components/sops
-# resources:
-#   - ./tuppr/ks.yaml
+resources:
+  - ./tuppr/ks.yaml
