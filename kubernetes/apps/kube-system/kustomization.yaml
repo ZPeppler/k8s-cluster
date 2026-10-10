@@ -4,10 +4,10 @@ kind: Kustomization
 namespace: kube-system
 
 components:
+  - ../../components/namespace
   - ../../components/sops
 
 resources:
-  - ./namespace.yaml
   - ./cilium/ks.yaml
   - ./coredns/ks.yaml
   - ./metrics-server/ks.yaml

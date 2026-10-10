@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ${APP}-pvc
+spec:
+  resources:
+    requests:
+      storage: ${APP_REQUEST}
+  storageClassName: ${APP_STORAGE_CLASS:=ceph-block}
+  accessModes:
+    - ReadWriteOnce
