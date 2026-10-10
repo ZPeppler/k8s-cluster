@@ -1,0 +1,78 @@
+---
+clusterName: kubernetes
+clusterEndpoint: https://192.168.1.250:6443
+
+# renovate: datasource=github-releases depName=siderolabs/talos
+talosVersion: v1.14.2
+# renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+kubernetesVersion: v1.37.1
+
+secretsPath: secrets.sops.yaml
+
+nodes:
+  - host: "talos-c1"
+    ip: "192.168.1.244"
+    role: control-plane
+    schematicId: "376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba"
+    data:
+      installDisk: "/dev/disk/by-id/nvme-AirDisk_256GB_SSD_QA8646R004557P1109"
+      installDiskSerial: ""
+      macAddr: "e0:51:d8:18:f5:40"
+      mtu: 1500
+      encryptDisk: false
+      kernelModules: []
+  - host: "talos-c2"
+    ip: "192.168.1.245"
+    role: control-plane
+    schematicId: "376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba"
+    data:
+      installDisk: "/dev/disk/by-id/nvme-TWSC_TSC3AN1T0-F6Q10S_TTSQA2531X02822"
+      installDiskSerial: ""
+      macAddr: "e0:51:d8:19:85:d8"
+      mtu: 1500
+      encryptDisk: false
+      kernelModules: []
+  - host: "talos-c3"
+    ip: "192.168.1.246"
+    role: control-plane
+    schematicId: "376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba"
+    data:
+      installDisk: "/dev/disk/by-id/nvme-AirDisk_512GB_SSD_PMA021W014001P1103"
+      installDiskSerial: ""
+      macAddr: "e0:51:d8:18:36:60"
+      mtu: 1500
+      encryptDisk: false
+      kernelModules: []
+  - host: "talos-w1"
+    ip: "192.168.1.247"
+    role: worker
+    schematicId: "376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba"
+    data:
+      installDisk: "/dev/disk/by-id/nvme-SK_hynix_BC501_HFM512GDJTNG-8310A_NN97N48071210793Q"
+      installDiskSerial: ""
+      macAddr: "98:fa:9b:1e:cc:53"
+      mtu: 1500
+      encryptDisk: false
+      kernelModules: []
+  - host: "talos-w2"
+    ip: "192.168.1.248"
+    role: worker
+    schematicId: "376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba"
+    data:
+      installDisk: "/dev/disk/by-id/nvme-SK_hynix_BC501_HFM512GDJTNG-8310A_NN97N48071210790J"
+      installDiskSerial: ""
+      macAddr: "98:fa:9b:21:ab:eb"
+      mtu: 1500
+      encryptDisk: false
+      kernelModules: []
+  - host: "talos-w3"
+    ip: "192.168.1.249"
+    role: worker
+    schematicId: "376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba"
+    data:
+      installDisk: "/dev/disk/by-id/nvme-SK_hynix_BC501_HFM512GDJTNG-8310A_NJ97N511413207C50"
+      installDiskSerial: ""
+      macAddr: "98:fa:9b:21:af:b4"
+      mtu: 1500
+      encryptDisk: false
+      kernelModules: []
