@@ -1,0 +1,24 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: database
+spec:
+  affinity:
+    enablePodAntiAffinity: true
+    podAntiAffinityType: required
+    topologyKey: kubernetes.io/hostname
+  imageName: ghcr.io/cloudnative-pg/postgresql:18
+  instances: 3
+  storage:
+    storageClass: ceph-block
+    size: 50Gi
+  primaryUpdateStrategy: unsupervised
+  resources:
+    requests:
+      cpu: "10m"
+      memory: "1Gi"
+    limits:
+      memory: "2Gi"
+  superuserSecret:
+    name: postgres-cluster-secret

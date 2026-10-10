@@ -1,0 +1,45 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: harbor
+  namespace: database
+spec:
+  cluster:
+    name: postgres
+  name: harbor
+  owner: harbor
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: harbor-dbrole
+  namespace: database
+spec:
+  cluster:
+    name: postgres
+  name: harbor
+  ensure: present
+  login: true
+  passwordSecret:
+    name: harbor-pg
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: harbor-pg
+  namespace: database
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword
+  target:
+    name: harbor-pg
+    template:
+      type: kubernetes.io/basic-auth
+      data:
+        username: harbor
+        password: "{{ .PG_PASS }}"
+  dataFrom:
+    - extract:
+        key: harbor

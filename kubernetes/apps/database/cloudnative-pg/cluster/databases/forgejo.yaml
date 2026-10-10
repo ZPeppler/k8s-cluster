@@ -1,0 +1,45 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: forgejo
+  namespace: database
+spec:
+  cluster:
+    name: postgres
+  name: forgejo
+  owner: forgejo
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: forgejo-dbrole
+  namespace: database
+spec:
+  cluster:
+    name: postgres
+  name: forgejo
+  ensure: present
+  login: true
+  passwordSecret:
+    name: forgejo-pg
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/external-secrets.io/externalsecret_v1beta1.json
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: forgejo-pg
+  namespace: database
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword
+  target:
+    name: forgejo-pg
+    template:
+      type: kubernetes.io/basic-auth
+      data:
+        username: forgejo
+        password: "{{ .PG_PASS }}"
+  dataFrom:
+    - extract:
+        key: forgejo

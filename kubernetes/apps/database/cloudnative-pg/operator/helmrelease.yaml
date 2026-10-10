@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://crd.cloudjur.com/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cloudnative-pg
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: cloudnative-pg
+  interval: 24h
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    crds:
+      create: true
+    config:
+      data:
+    monitoring:
+      podMonitorEnabled: false
+      grafanaDashboard:
+        create: true
+    resources:
+      requests:
+        cpu: 15m
+        memory: 192Mi
+      limits:
+        memory: 384Mi
