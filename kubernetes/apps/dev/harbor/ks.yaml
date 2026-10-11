@@ -6,8 +6,7 @@ metadata:
   namespace: dev
 spec:
   components:
-    - ../../../../components/dragonfly
-    - ../../../../components/kanidm
+    # - ../../../../components/kanidm
     - ../../../../components/rook-ceph
   commonMetadata:
     labels:
@@ -19,13 +18,13 @@ spec:
         kind: Secret
     substitute:
       APP: *app
-      APP_REQUEST: 10Gi
-      KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/forgejo.svg
-      KANIDM_CLIENT_ID_KEY: *app
-      KANIDM_CLIENT_SECRET_KEY: HARBOR_SECRET_KEY
-      KANIDM_GROUP: git-user
-      KANIDM_ORIGIN_HOST: harbor
-      KANIDM_REDIRECT_PATH: user/oauth2/kanidm/callback
+      APP_REQUEST: 100Gi
+      # KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/forgejo.svg
+      # KANIDM_CLIENT_ID_KEY: *app
+      # KANIDM_CLIENT_SECRET_KEY: HARBOR_SECRET_KEY
+      # KANIDM_GROUP: git-user
+      # KANIDM_ORIGIN_HOST: harbor
+      # KANIDM_REDIRECT_PATH: user/oauth2/kanidm/callback
   prune: true
   sourceRef:
     kind: GitRepository

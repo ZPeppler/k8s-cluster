@@ -10,7 +10,26 @@ spec:
     - name: envoy-external
       namespace: network
   rules:
-    - backendRefs:
-        - kind: Service
-          name: harbor-http
-          port: 3000
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/
+        - path:
+            type: PathPrefix
+            value: /service/
+        - path:
+            type: PathPrefix
+            value: /v2/
+        - path:
+            type: PathPrefix
+            value: /c/
+      backendRefs:
+        - name: harbor-core
+          port: 80
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: harbor-portal
+          port: 80
