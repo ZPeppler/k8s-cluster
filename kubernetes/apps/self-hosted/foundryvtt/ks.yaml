@@ -20,7 +20,6 @@ spec:
     substitute:
       APP: *app
       APP_REQUEST: 10Gi
-      APP_READ_WRITE: ReadWriteMany
   prune: true
   retryInterval: 2m
   sourceRef:
