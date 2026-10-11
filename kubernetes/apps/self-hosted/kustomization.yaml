@@ -4,5 +4,5 @@ namespace: self-hosted
 components:
   - ../../components/namespace
   - ../../components/sops
-resources:
-  - ./foundryvtt/ks.yaml
+# resources:
+#   - ./foundryvtt/ks.yaml
