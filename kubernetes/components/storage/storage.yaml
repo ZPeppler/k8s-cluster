@@ -8,4 +8,4 @@ spec:
       storage: ${APP_REQUEST}
   storageClassName: ${APP_STORAGE_CLASS:=ceph-block}
   accessModes:
-    - ReadWriteOnce
+    - ${APP_READ_WRITE:=ReadWriteOnce}

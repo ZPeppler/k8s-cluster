@@ -11,7 +11,7 @@ spec:
   values:
     controllers:
       foundryvtt:
-        replicas: 1
+        replicas: 3
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
