@@ -1,128 +1,190 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: ["github>home-operations/renovate-presets#8.1.0"],
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'github>home-operations/renovate-presets#8.1.0',
+  ],
   hostRules: [
     {
-      matchHost: "code.forgejo.org",
-      hostType: "docker",
+      matchHost: 'code.forgejo.org',
+      hostType: 'docker',
       enabled: true,
     },
   ],
-  schedule: ["every weekend"],
+  schedule: [
+    'every weekend',
+  ],
   lockFileMaintenance: {
     enabled: true,
-    schedule: ["before 3am on the first day of the month"],
-    commitMessageExtra: "({{manager}})",
-    additionalBranchPrefix: "{{manager}}-",
+    schedule: [
+      'before 3am on the first day of the month',
+    ],
+    commitMessageExtra: '({{manager}})',
+    additionalBranchPrefix: '{{manager}}-',
   },
   customDatasources: {
-    "talos-factory": {
-      defaultRegistryUrlTemplate: "https://factory.talos.dev/versions",
-      format: "json",
-      transformTemplates: ['{"releases": [$.{"version": $}]}'],
+    'talos-factory': {
+      defaultRegistryUrlTemplate: 'https://factory.talos.dev/versions',
+      format: 'json',
+      transformTemplates: [
+        '{"releases": [$.{"version": $}]}',
+      ],
     },
   },
   customManagers: [
     {
-      customType: "regex",
-      description: ["Process custom dependencies"],
-      fileMatch: ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$", "(^|/)talos/.+\\.ya?ml(?:\\.j2)?$"],
-      matchStrings: [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?( repository=(?<registryUrl>\\S+))?\\n.+: (&\\S+\\s)?(?<currentValue>\\S+)",
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)",
+      customType: 'regex',
+      description: [
+        'Process custom dependencies',
       ],
-      datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      managerFilePatterns: [
+        '/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/',
+        '/(^|/)talos/.+\\.ya?ml(?:\\.j2)?$/',
+      ],
+      matchStrings: [
+        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?( repository=(?<registryUrl>\\S+))?\\n.+: (&\\S+\\s)?(?<currentValue>\\S+)',
+        'datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)',
+      ],
+      datasourceTemplate: '{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}',
+      versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
     },
     {
-      // File pattern targets the `talos/` directory convention used by
-      // home-operations/cluster-template and similar layouts. Override
-      // `managerFilePatterns` if your Talos configs live elsewhere.
-      description: "Process Talos Factory installer images and topf talosVersion",
-      customType: "regex",
-      managerFilePatterns: ["/talos\\/.*\\.ya?ml(?:\\.j2)?$/"],
-      matchStrings: [
-        "factory\\.talos\\.dev\\/[^/]+\\/[^:]+:(?<currentValue>v\\S+)",
-        // topf.yaml `talosVersion:` (bare or v-prefixed; topf trims the leading v)
-        "talosVersion:\\s*[\"']?(?<currentValue>v?[0-9][^\"'\\s]*)",
+      description: 'Process Talos Factory installer images and topf talosVersion',
+      customType: 'regex',
+      managerFilePatterns: [
+        '/talos\\/.*\\.ya?ml(?:\\.j2)?$/',
       ],
-      datasourceTemplate: "custom.talos-factory",
-      versioningTemplate: "semver",
-      depNameTemplate: "siderolabs/talos",
+      matchStrings: [
+        'factory\\.talos\\.dev\\/[^/]+\\/[^:]+:(?<currentValue>v\\S+)',
+        'talosVersion:\\s*["\']?(?<currentValue>v?[0-9][^"\'\\s]*)',
+      ],
+      datasourceTemplate: 'custom.talos-factory',
+      versioningTemplate: 'semver',
+      depNameTemplate: 'siderolabs/talos',
     },
   ],
   packageRules: [
     {
-      description: "GitHub Actions Group",
-      matchManagers: ["github-actions"],
-      groupName: "github-actions",
-      minimumReleaseAge: "3 days",
+      description: 'GitHub Actions Group',
+      matchManagers: [
+        'github-actions',
+      ],
+      groupName: 'github-actions',
+      minimumReleaseAge: '3 days',
     },
     {
-      description: "Mise Tools Group",
-      matchManagers: ["mise"],
-      groupName: "mise tools",
-      groupSlug: "mise-tools",
-      minimumReleaseAge: "3 days",
+      description: 'Mise Tools Group',
+      matchManagers: [
+        'mise',
+      ],
+      groupName: 'mise tools',
+      groupSlug: 'mise-tools',
+      minimumReleaseAge: '3 days',
     },
     {
-      description: "Talos Group",
-      groupName: "talos",
-      matchPackageNames: ["ghcr.io/siderolabs/installer", "siderolabs/talos", "talosctl"],
+      description: 'Talos Group',
+      groupName: 'talos',
+      matchPackageNames: [
+        'ghcr.io/siderolabs/installer',
+        'siderolabs/talos',
+        'talosctl',
+      ],
       minimumGroupSize: 3,
     },
     {
-      description: "Ignore factory.talos.dev images matched by generic managers; the custom manager above owns them",
-      matchDatasources: ["docker"],
-      matchPackageNames: ["/^factory\\.talos\\.dev\\//"],
+      description: 'Ignore factory.talos.dev images matched by generic managers; the custom manager above owns them',
+      matchDatasources: [
+        'docker',
+      ],
+      matchPackageNames: [
+        '/^factory\\.talos\\.dev\\//',
+      ],
       enabled: false,
     },
     {
-      matchDatasources: ["custom.talos-factory"],
-      semanticCommitScope: "container",
-      commitMessageTopic: "{{depName}}",
+      matchDatasources: [
+        'custom.talos-factory',
+      ],
+      semanticCommitScope: 'container',
+      commitMessageTopic: '{{depName}}',
     },
     {
-      description: "Flux Operator Group",
-      groupName: "flux-operator",
-      matchDatasources: ["docker"],
-      matchPackageNames: ["/flux-operator/", "/flux-instance/"],
+      description: 'Flux Operator Group',
+      groupName: 'flux-operator',
+      matchDatasources: [
+        'docker',
+      ],
+      matchPackageNames: [
+        '/flux-operator/',
+        '/flux-instance/',
+      ],
       group: {
-        commitMessageTopic: "{{{groupName}}} group",
+        commitMessageTopic: '{{{groupName}}} group',
       },
       minimumGroupSize: 2,
     },
     {
-      matchUpdateTypes: ["major"],
-      addLabels: ["type/major"],
+      matchUpdateTypes: [
+        'major',
+      ],
+      addLabels: [
+        'type/major',
+      ],
     },
     {
-      matchUpdateTypes: ["minor"],
-      addLabels: ["type/minor"],
+      matchUpdateTypes: [
+        'minor',
+      ],
+      addLabels: [
+        'type/minor',
+      ],
     },
     {
-      matchUpdateTypes: ["patch"],
-      addLabels: ["type/patch"],
+      matchUpdateTypes: [
+        'patch',
+      ],
+      addLabels: [
+        'type/patch',
+      ],
     },
     {
-      matchUpdateTypes: ["digest"],
-      addLabels: ["type/digest"],
+      matchUpdateTypes: [
+        'digest',
+      ],
+      addLabels: [
+        'type/digest',
+      ],
     },
     {
-      matchDatasources: ["docker"],
-      addLabels: ["renovate/container"],
+      matchDatasources: [
+        'docker',
+      ],
+      addLabels: [
+        'renovate/container',
+      ],
     },
     {
-      matchDatasources: ["helm"],
-      addLabels: ["renovate/helm"],
+      matchDatasources: [
+        'helm',
+      ],
+      addLabels: [
+        'renovate/helm',
+      ],
     },
     {
-      matchManagers: ["github-actions"],
-      addLabels: ["renovate/github-action"],
+      matchManagers: [
+        'github-actions',
+      ],
+      addLabels: [
+        'renovate/github-action',
+      ],
     },
     {
-      matchDatasources: ["github-releases"],
-      addLabels: ["renovate/github-release"],
+      matchDatasources: [
+        'github-releases',
+      ],
+      addLabels: [
+        'renovate/github-release',
+      ],
     },
   ],
 }
