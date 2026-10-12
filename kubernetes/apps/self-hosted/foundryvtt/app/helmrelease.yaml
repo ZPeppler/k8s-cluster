@@ -22,7 +22,7 @@ spec:
               CONTAINER_CACHE: /data/container_cache
               CONTAINER_VERBOSE: "true"
               FOUNDRY_COMPRESS_WEBSOCKET: "true"
-              FOUNDRY_CSS_THEME: scifi
+              FOUNDRY_CSS_THEME: fantasy
               FOUNDRY_IP_DISCOVERY: "false"
               FOUNDRY_MINIFY_STATIC_FILES: "true"
               FOUNDRY_PROTOCOL: "4"
