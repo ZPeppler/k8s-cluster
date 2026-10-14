@@ -74,4 +74,4 @@ spec:
       memory: ${CNPG_MEMORY_LIMIT:=1Gi}
   storage:
     size: ${CNPG_CAPACITY:=8Gi}
-    storageClass: ${CNPG_STORAGECLASS:=miroir-local}
+    storageClass: ${CNPG_STORAGECLASS:=ceph-block}

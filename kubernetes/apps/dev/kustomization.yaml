@@ -5,5 +5,5 @@ components:
   - ../../components/namespace
   - ../../components/sops
 resources:
-  # - ./forgejo/ks.yaml
+  - ./forgejo/ks.yaml
   - ./renovate/ks.yaml
