@@ -1,4 +1,19 @@
 {
+	"folders": [
+		{
+		    "path": ".."
+		}
+	],
+	"extensions": {
+  	"recommendations": [
+  	  "blueglassblock.better-json5",
+  	  "irongeek.vscode-env",
+  	  "redhat.vscode-yaml",
+  	  "signageos.signageos-vscode-sops",
+  	  "hverlin.mise-vscode"
+  	]
+	},
+	"settings": {
     "editor.bracketPairColorization.enabled": true,
     "files.associations": {
         "**/*.json5": "json5"
@@ -15,4 +30,5 @@
     "yaml.schemas": {
         "kubernetes": "./kubernetes/**/*.yaml"
     }
+	}
 }
