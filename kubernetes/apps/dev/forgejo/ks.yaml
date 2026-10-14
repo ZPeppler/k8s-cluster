@@ -6,7 +6,7 @@ metadata:
   namespace: &namespace dev
 spec:
   components:
-    - ../../../../components/cnpg
+    - ../../../../components/cnpg/pg18
     - ../../../../components/dragonfly
     - ../../../../components/kanidm
     - ../../../../components/storage
