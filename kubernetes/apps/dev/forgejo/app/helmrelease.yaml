@@ -9,8 +9,8 @@ spec:
   interval: 30m
   valuesFrom:
     - kind: Secret
-      name: forgejo-admin
-      valuesKey: pg_pass
+      name: forgejo-postgres-app
+      valuesKey: password
       targetPath: gitea.config.database.PASSWD
   values:
     gitea:
@@ -20,36 +20,42 @@ spec:
         email: info@fade-lab.com
         passwordMode: keepUpdated
       config:
-        server:
-          APP_DATA_PATH: /data/gitea
-          ROOT_URL: https://git.${SECRET_DOMAIN}
-        database:
-          DB_TYPE: postgres
-          HOST: postgres-rw.database.svc.cluster.local:5432
-          NAME: *app
-          USER: *app
         cache:
           ADAPTER: redis
-          HOST: redis://forgejo-dragonfly.dev.svc.cluster.local:6379/0
-        session:
-          PROVIDER: redis
-          PROVIDER_CONFIG: redis://forgejo-dragonfly.dev.svc.cluster.local:6379/1
-        queue:
-          TYPE: redis
-          CONN_STR: redis://forgejo-dragonfly.dev.svc.cluster.local:6379/2
-        service:
-          DISABLE_REGISTRATION: false
-          ALLOW_ONLY_EXTERNAL_REGISTRATION: true
-        oauth2_client:
-          ENABLE_AUTO_REGISTRATION: true
-          USERNAME: preferred_username
+          HOST: redis://forgejo-dragonfly:6379/0
         cron.update_mirrors:
           ENABLED: true
           SCHEDULE: "@every 10m"
+        database:
+          DB_TYPE: postgres
+          HOST: forgejo-postgres-rw:5432
+          NAME: *app
+          USER: *app
         mirror:
           ENABLED: true
           DEFAULT_INTERVAL: 10m
           MIN_INTERVAL: 10m
+        oauth2_client:
+          ENABLE_AUTO_REGISTRATION: true
+          USERNAME: preferred_username
+        queue:
+          TYPE: redis
+          CONN_STR: redis://forgejo-dragonfly:6379/2
+        repository:
+          DEFAULT_REPO_UNITS: repo.code,repo.releases,repo.issues,repo.pulls,repo.actions
+          DISABLED_REPO_UNITS: repo.ext_wiki,repo.ext_issues
+          ROOT: /data/git/repositories
+        repository.pull-request:
+          DEFAULT_MERGE_STYLE: squash
+        server:
+          APP_DATA_PATH: /data/gitea
+          ROOT_URL: https://git.${SECRET_DOMAIN}
+        session:
+          PROVIDER: redis
+          PROVIDER_CONFIG: redis://forgejo-dragonfly:6379/1
+        service:
+          DISABLE_REGISTRATION: false
+          ALLOW_ONLY_EXTERNAL_REGISTRATION: true
       oauth:
         - name: kanidm
           provider: openidConnect
@@ -64,7 +70,7 @@ spec:
       rootless: true
       registry: code.forgejo.org
       repository: forgejo/forgejo
-      tag: 16.0.3-rootless
+      tag: 16.0.6-rootless
     persistence:
       enabled: true
       create: false

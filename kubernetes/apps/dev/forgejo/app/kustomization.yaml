@@ -4,4 +4,4 @@ resources:
   - ./ocirepository.yaml
   - ./httproute.yaml
   - ./externalsecret.yaml
-  # - ./helmrelease.yaml
+  - ./helmrelease.yaml
