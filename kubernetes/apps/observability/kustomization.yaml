@@ -5,6 +5,7 @@ components:
   - ../../components/namespace
   - ../../components/sops
 resources:
+  - ./gatus-sidecar/ks.yaml
   - ./grafana/ks.yaml
   - ./headlamp/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
