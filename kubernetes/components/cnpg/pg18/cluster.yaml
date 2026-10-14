@@ -25,19 +25,23 @@ spec:
   # from the object store you must delete the Cluster *and* its PVCs -- leaving a
   # dangling PVC behind makes CNPG reuse it instead.
   bootstrap:
-    recovery:
-      source: ${APP}-postgres
+    initdb:
       database: ${CNPG_DATABASE:=${APP}}
       owner: ${CNPG_OWNER:=${APP}}
+
+    # recovery:
+    #   source: ${APP}-postgres
+    #   database: ${CNPG_DATABASE:=${APP}}
+    #   owner: ${CNPG_OWNER:=${APP}}
   enablePDB: false
   enableSuperuserAccess: false
-  externalClusters:
-    - name: ${APP}-postgres
-      plugin:
-        name: barman-cloud.cloudnative-pg.io
-        parameters:
-          barmanObjectName: ${APP}-postgres
-          serverName: ${CNPG_SERVER_NAME:=${APP}-postgres-pg18}
+  # externalClusters:
+  #   - name: ${APP}-postgres
+  #     plugin:
+  #       name: barman-cloud.cloudnative-pg.io
+  #       parameters:
+  #         barmanObjectName: ${APP}-postgres
+  #         serverName: ${CNPG_SERVER_NAME:=${APP}-postgres-pg18}
   # The "minimal" flavour is the right one here: it is built for backup plugins,
   # whereas the operator's default "system" flavour only exists to carry the
   # in-core Barman Cloud binaries and is deprecated along with them.
