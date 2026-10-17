@@ -17,7 +17,7 @@ spec:
           app:
             image:
               repository: docker.io/felddy/foundryvtt
-              tag: 13.351.0@sha256:41d518782f2fabbec887413c56da8ef8175c22fb5a75fde45382661443a8ae6b
+              tag: 14.369.0@sha256:76497e09a7eeae769359eebdaae3bbcf39c9c826068f7dcc061b8b7e9bffaec8
             env:
               CONTAINER_CACHE: /data/container_cache
               CONTAINER_VERBOSE: "true"
