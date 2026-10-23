@@ -25,7 +25,7 @@ spec:
           hostnames:
             - alertmanager.${SECRET_DOMAIN}
           parentRefs:
-            - name: envoy-internal
+            - name: envoy-external
               namespace: network
 
       alertmanagerSpec:
@@ -39,7 +39,7 @@ spec:
             spec:
               resources:
                 requests:
-                  storage: 1Gi
+                  storage: 25Gi
 
     kubeApiServer:
       enabled: true
