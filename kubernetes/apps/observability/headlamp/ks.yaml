@@ -6,9 +6,17 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/kanidm
   interval: 1h
   path: ./kubernetes/apps/observability/headlamp/app
   postBuild:
+    substitute:
+      APP: *app
+      KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/headlamp.svg
+      KANIDM_GROUP: k8s-admin
+      KANIDM_ORIGIN_HOST: *app
+      KANIDM_REDIRECT_PATH: oidc-callback
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
