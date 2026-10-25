@@ -4,7 +4,7 @@ metadata:
   name: k8s-admins
 subjects:
   - kind: Group
-    name: k8s-admin@idm.${SECRET_DOMAIN}
+    name: kanidm:k8s-admin@idm.${SECRET_DOMAIN}
     apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
