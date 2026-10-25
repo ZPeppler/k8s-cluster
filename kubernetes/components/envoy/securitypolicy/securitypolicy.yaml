@@ -15,3 +15,4 @@ spec:
       name: ${APP}-kanidm-oauth2-credentials
     redirectURL: https://${ENVOY_SUBDOMAIN:=${APP}}.${SECRET_DOMAIN}/oauth2/callback
     logoutPath: /logout
+    refreshToken: true
