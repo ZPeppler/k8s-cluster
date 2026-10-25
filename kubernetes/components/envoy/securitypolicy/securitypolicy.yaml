@@ -1,0 +1,17 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: ${APP}-oidc
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: ${APP}
+  oidc:
+    provider:
+      issuer: https://idm.${SECRET_DOMAIN}/oauth2/openid/${APP}
+    clientID: ${APP}
+    clientSecret:
+      name: ${APP}-kanidm-oauth2-credentials
+    redirectURL: https://${ENVOY_SUBDOMAIN:=${APP}}.${SECRET_DOMAIN}/oauth2/callback
+    logoutPath: /logout
