@@ -26,6 +26,6 @@ spec:
   disableConsentPrompt: true
   secretKeyAliases:
     clientId:
-      - key
+      - ${KANIDM_CLIENT_KEY:=key}
     clientSecret:
-      - secret
+      - ${KANIDM_CLIENT_SECRET:=secret}
