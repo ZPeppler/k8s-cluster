@@ -46,3 +46,7 @@ spec:
             source: https://artifacthub.io/packages/headlamp/batuhancikrikci-headlamp-plugins/monitoring
           - name: cilium
             source: https://artifacthub.io/packages/headlamp/batuhancikrikci-headlamp-plugins/cilium
+          - name: gateway
+            source: https://artifacthub.io/packages/headlamp/batuhancikrikci-headlamp-plugins/gateway
+          - name: headlamp-plus
+            source: https://artifacthub.io/packages/headlamp/batuhancikrikci-headlamp-plugins/headlamp-plus

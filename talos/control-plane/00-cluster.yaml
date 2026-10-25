@@ -46,7 +46,7 @@ configuration:
           prefix: "kanidm:"
         groups:
           claim: groups
-          prefix: "kanidm"
+          prefix: "kanidm:"
 ---
 apiVersion: v1alpha1
 kind: KubeControllerManagerConfig
