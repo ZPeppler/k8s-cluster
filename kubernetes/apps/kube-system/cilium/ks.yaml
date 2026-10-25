@@ -15,6 +15,7 @@ spec:
     substitute:
       APP: hubble
       KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/cilium.svg
+      KANIDM_CLIENT_SECRET: client-secret
       KANIDM_GROUP: k8s-admin
       KANIDM_ORIGIN_HOST: hubble
       KANIDM_REDIRECT_PATH: oauth2/callback
