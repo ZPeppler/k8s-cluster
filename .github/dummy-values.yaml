@@ -1,0 +1,9 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: forgejo-postgres-app
+  namespace: dev
+data:
+  password: >-
+    VGVzdFBhc3N3b3JkTm90UmVhbAo=
+type: kubernetes.io/basic-auth
