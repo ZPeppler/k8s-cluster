@@ -32,29 +32,33 @@ url_api = "https://api.github.com/repos/FiloSottile/age/releases/assets/53554188
 provenance = "github-attestations"
 
 [[tools.cloudflared]]
-version = "2026.10.5"
+version = "2026.10.7"
 backend = "aqua:cloudflare/cloudflared"
-specifiers = ["2026.10.5"]
+specifiers = ["2026.10.7"]
 
 [tools.cloudflared."platforms.linux-arm64"]
-checksum = "sha256:72e0d05a67e09da87cf495e409a28c3cc5994dd23fc66a982eebea6a55923b7d"
-url = "https://github.com/cloudflare/cloudflared/releases/download/2026.10.5/cloudflared-linux-arm64"
-url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/681691739"
+checksum = "sha256:3df43aedc9ff291d1735b5cb576cb97e0b157488796db2e32b28aecabb445775"
+checksum_source = "mise-versions"
+url = "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-linux-arm64"
+url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/692818763"
 
 [tools.cloudflared."platforms.linux-x64"]
-checksum = "sha256:e1bc0cf084fd9e590554fe769a86b1db46701c3f847a43d902f7b974a4e16298"
-url = "https://github.com/cloudflare/cloudflared/releases/download/2026.10.5/cloudflared-linux-amd64"
-url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/681690401"
+checksum = "sha256:1f99fb518b83dec2ba8d870a7cc991d82a77e6196295a3d2754ba17ab9f91872"
+checksum_source = "mise-versions"
+url = "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-linux-amd64"
+url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/692817008"
 
 [tools.cloudflared."platforms.macos-arm64"]
-checksum = "sha256:184c7d4f5f977348243a6d7ca8f6cf6073b9b2746cfe8c1fe15aa59e9a522bf0"
-url = "https://github.com/cloudflare/cloudflared/releases/download/2026.10.5/cloudflared-darwin-arm64.tgz"
-url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/681689374"
+checksum = "sha256:3586ccf397e98e5f437e60e7c307ca6ac463e110580503af8bb8e6f9ebf831bd"
+checksum_source = "mise-versions"
+url = "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-darwin-arm64.tgz"
+url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/692819281"
 
 [tools.cloudflared."platforms.macos-x64"]
-checksum = "sha256:6699392fed92367808c248c2d90bed66e49bbf66e1b4ee3e4141230f3f7391b3"
-url = "https://github.com/cloudflare/cloudflared/releases/download/2026.10.5/cloudflared-darwin-amd64.tgz"
-url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/681689768"
+checksum = "sha256:02f3edfd87684dd5b705607688e4eb4b323f6e777b81e7b3a85af556aa356848"
+checksum_source = "mise-versions"
+url = "https://github.com/cloudflare/cloudflared/releases/download/2026.10.7/cloudflared-darwin-amd64.tgz"
+url_api = "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/692819049"
 
 [[tools.flux2]]
 version = "2.10.0"
@@ -466,30 +470,30 @@ url_api = "https://api.github.com/repos/mikefarah/yq/releases/assets/597222619"
 provenance = "cosign"
 
 [[tools.zizmor]]
-version = "1.31.1"
+version = "1.32.0"
 backend = "aqua:zizmorcore/zizmor"
-specifiers = ["1.31.1"]
+specifiers = ["1.32.0"]
 
 [tools.zizmor."platforms.linux-arm64"]
-checksum = "sha256:37eebbd5762a44f262d94875431b14a6d2402991e90a685113ea97b8b41be833"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467282"
+checksum = "sha256:cb152b207f815116d7fa1c1ee4614f61578803351395052908095e79adfd9fd0"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541931"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.linux-x64"]
-checksum = "sha256:d185f726bdaf92df78273217dfdd24ebcd6b0ef48cf3ce776ff5762b6e138c99"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467284"
+checksum = "sha256:bb110cc765eca9cd7efb2e284a956be5974c60027b0970f16397d86208a9957b"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541932"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.macos-arm64"]
-checksum = "sha256:ad5aa633cd56215b11e6c51d51f90c7e6b22904a75047d1215abbd422f61d698"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467283"
+checksum = "sha256:6efed18c4539a663fd3c851a2be9533fd8456c4e646d9416206da059154a0d3c"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541933"
 provenance = "github-attestations"
 
 [tools.zizmor."platforms.macos-x64"]
-checksum = "sha256:72ae63bb85b67229c06242f04195cb43927e9fab5f43803c6434dc701a517d61"
-url = "https://github.com/zizmorcore/zizmor/releases/download/v1.31.1/zizmor-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/645467287"
+checksum = "sha256:6983143c719ada6845a69cc4dd2bacc215f971662fecd8bbd2678388e5ce5969"
+url = "https://github.com/zizmorcore/zizmor/releases/download/v1.32.0/zizmor-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/zizmorcore/zizmor/releases/assets/703541930"
 provenance = "github-attestations"
