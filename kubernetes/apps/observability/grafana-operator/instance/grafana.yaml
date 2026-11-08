@@ -41,8 +41,8 @@ spec:
       domain: grafana.${SECRET_DOMAIN}
       root_url: https://grafana.${SECRET_DOMAIN}
       enforce_domain: "false"
-  disableDefaultAdminSecret: true
-  disableDefaultSecurityContext: All
+  # disableDefaultAdminSecret: true
+  # disableDefaultSecurityContext: All
   deployment:
     spec:
       strategy:
