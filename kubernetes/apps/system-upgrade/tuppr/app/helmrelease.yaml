@@ -30,4 +30,4 @@ spec:
         grafanaOperator:
           enabled: true
           matchLabels:
-            dashboard: grafana
+            dashboards: grafana

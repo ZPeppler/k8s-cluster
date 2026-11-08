@@ -3,7 +3,7 @@ kind: Grafana
 metadata:
   name: grafana
   labels:
-    dashboard: grafana
+    dashboards: grafana
 spec:
   config:
     analytics:
