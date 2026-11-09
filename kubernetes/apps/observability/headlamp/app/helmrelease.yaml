@@ -13,6 +13,7 @@ spec:
       valuesKey: CLIENT_SECRET
       targetPath: config.oidc.clientSecret
   values:
+    replicaCount: 2
     fullnameOverride: headlamp
     clusterRoleBinding:
       create: false
@@ -31,6 +32,9 @@ spec:
     pluginsManager:
       enabled: true
       configContent: |
+        installOptions:
+         parallel: true
+         maxConcurrent: 3
         plugins:
           - name: cert-manager
             source: https://artifacthub.io/packages/headlamp/headlamp-plugins/headlamp_cert-manager
