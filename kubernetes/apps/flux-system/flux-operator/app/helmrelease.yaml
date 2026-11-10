@@ -14,6 +14,13 @@ spec:
       valuesKey: secret
       targetPath: web.config.authentication.oauth2.clientSecret
   values:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 320Mi
+      limits:
+        cpu: 2000m
+        memory: 1Gi
     serviceMonitor:
       create: true
     web:
