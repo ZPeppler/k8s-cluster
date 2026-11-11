@@ -21,6 +21,12 @@ spec:
     authorization:
       enabled: false
     fullnameOverride: renovate-operator
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+      dashboard:
+        enabled: true
     route:
       enabled: true
       hostnames:
@@ -30,3 +36,6 @@ spec:
           namespace: network
     webhook:
       enabled: true
+    extraEnv:
+      - name: TZ
+        value: "America/New_York"
