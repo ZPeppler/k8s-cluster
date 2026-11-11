@@ -1,6 +1,12 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  extends: ["github>home-operations/renovate-presets#11.0.0", ":timezone(America/New_York)"],
+  extends: [
+    "github>home-operations/renovate-presets#11.0.0",
+    ":timezone(America/New_York)",
+    "local>ZPeppler/k8s-cluster//.renovate/customDatasources.json5",
+    "local>ZPeppler/k8s-cluster//.renovate/customManagers.json5",
+    "local>ZPeppler/k8s-cluster//.renovate/packageRules.json5",
+  ],
   reviewers: ["ZPeppler"],
   hostRules: [
     {
@@ -16,113 +22,4 @@
     commitMessageExtra: "({{manager}})",
     additionalBranchPrefix: "{{manager}}-",
   },
-  customDatasources: {
-    "talos-factory": {
-      defaultRegistryUrlTemplate: "https://factory.talos.dev/versions",
-      format: "json",
-      transformTemplates: ['{"releases": [$.{"version": $}]}'],
-    },
-  },
-  customManagers: [
-    {
-      customType: "regex",
-      description: ["Process custom dependencies"],
-      managerFilePatterns: [
-        "/(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$/",
-        "/(^|/)talos/.+\\.ya?ml(?:\\.j2)?$/",
-      ],
-      matchStrings: [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?( repository=(?<registryUrl>\\S+))?\\n.+: (&\\S+\\s)?(?<currentValue>\\S+)",
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+/(?<currentValue>(v|\\d)[^/]+)",
-      ],
-      datasourceTemplate: "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
-    },
-    {
-      description: "Process Talos Factory installer images and topf talosVersion",
-      customType: "regex",
-      managerFilePatterns: ["/talos\\/.*\\.ya?ml(?:\\.j2)?$/"],
-      matchStrings: [
-        "factory\\.talos\\.dev\\/[^/]+\\/[^:]+:(?<currentValue>v\\S+)",
-        "talosVersion:\\s*[\"']?(?<currentValue>v?[0-9][^\"'\\s]*)",
-      ],
-      datasourceTemplate: "custom.talos-factory",
-      versioningTemplate: "semver",
-      depNameTemplate: "siderolabs/talos",
-    },
-  ],
-  packageRules: [
-    {
-      description: "GitHub Actions Group",
-      matchManagers: ["github-actions"],
-      groupName: "github-actions",
-      minimumReleaseAge: "3 days",
-    },
-    {
-      description: "Mise Tools Group",
-      matchManagers: ["mise"],
-      groupName: "mise tools",
-      groupSlug: "mise-tools",
-      minimumReleaseAge: "3 days",
-    },
-    {
-      description: "Talos Group",
-      groupName: "talos",
-      matchPackageNames: ["ghcr.io/siderolabs/installer", "siderolabs/talos", "talosctl"],
-      minimumGroupSize: 3,
-    },
-    {
-      description: "Ignore factory.talos.dev images matched by generic managers; the custom manager above owns them",
-      matchDatasources: ["docker"],
-      matchPackageNames: ["/^factory\\.talos\\.dev\\//"],
-      enabled: false,
-    },
-    {
-      matchDatasources: ["custom.talos-factory"],
-      semanticCommitScope: "container",
-      commitMessageTopic: "{{depName}}",
-    },
-    {
-      description: "Flux Operator Group",
-      groupName: "flux-operator",
-      matchDatasources: ["docker"],
-      matchPackageNames: ["/flux-operator/", "/flux-instance/"],
-      group: {
-        commitMessageTopic: "{{{groupName}}} group",
-      },
-      minimumGroupSize: 2,
-    },
-    {
-      matchUpdateTypes: ["major"],
-      addLabels: ["type/major"],
-    },
-    {
-      matchUpdateTypes: ["minor"],
-      addLabels: ["type/minor"],
-    },
-    {
-      matchUpdateTypes: ["patch"],
-      addLabels: ["type/patch"],
-    },
-    {
-      matchUpdateTypes: ["digest"],
-      addLabels: ["type/digest"],
-    },
-    {
-      matchDatasources: ["docker"],
-      addLabels: ["renovate/container"],
-    },
-    {
-      matchDatasources: ["helm"],
-      addLabels: ["renovate/helm"],
-    },
-    {
-      matchManagers: ["github-actions"],
-      addLabels: ["renovate/github-action"],
-    },
-    {
-      matchDatasources: ["github-releases"],
-      addLabels: ["renovate/github-release"],
-    },
-  ],
 }
