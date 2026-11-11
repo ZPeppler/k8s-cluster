@@ -15,6 +15,7 @@
       enabled: true,
     },
   ],
+  dependencyDashboardTitle: "Renovate Dashboard 🤖",
   schedule: ["every weekend"],
   lockFileMaintenance: {
     enabled: true,
