@@ -11,6 +11,8 @@ spec:
   values:
     controllers:
       searxng:
+        annotations:
+          reloader.stakater.com/auto: "true"
         enabled: true
         type: deployment
         replicas: 1
@@ -28,7 +30,7 @@ spec:
                 custom: true
                 spec:
                   httpGet:
-                    path: /
+                    path: /stats
                     port: &port 8080
                   initialDelaySeconds: 0
                   periodSeconds: 10
@@ -41,6 +43,18 @@ spec:
                 memory: 128Mi
               limits:
                 memory: 1Gi
+    persistence:
+      config:
+        type: configMap
+        name: searxng-config
+        globalMounts:
+          - path: /etc/searxng/settings.yml
+            subPath: settings.yaml
+            readOnly: true
+      tpmfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
     service:
       app:
         primary: true
