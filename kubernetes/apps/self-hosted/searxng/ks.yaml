@@ -17,10 +17,11 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      ENVOY_SUBDOMAIN: &subdomain search
       KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/searxng.svg
       KANIDM_CLIENT_SECRET: client-secret
       KANIDM_GROUP: k8s-admin
-      KANIDM_ORIGIN_HOST: search
+      KANIDM_ORIGIN_HOST: *subdomain
       KANIDM_REDIRECT_PATH: oauth2/callback
     substituteFrom:
       - name: cluster-secrets
