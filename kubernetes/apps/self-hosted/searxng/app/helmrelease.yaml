@@ -24,6 +24,9 @@ spec:
               pullPolicy: IfNotPresent
             env:
               TZ: America/New_York
+            envFrom:
+              - externalSecretRef:
+                  identifier: searxng-secret
             probes:
               liveness: &probes
                 enabled: true
