@@ -5,13 +5,23 @@ kind: Kustomization
 metadata:
   name: &app searxng
 spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   components:
     - ../../../../components/dragonfly
+    - ../../../../components/envoy/securitypolicy
+    - ../../../../components/kanidm
   interval: 1h
   path: ./kubernetes/apps/self-hosted/searxng/app
   postBuild:
     substitute:
       APP: *app
+      KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/searxng.svg
+      KANIDM_CLIENT_SECRET: client-secret
+      KANIDM_GROUP: k8s-admin
+      KANIDM_ORIGIN_HOST: search
+      KANIDM_REDIRECT_PATH: oauth2/callback
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
