@@ -6,3 +6,4 @@ components:
   - ../../components/sops
 resources:
   - ./foundryvtt/ks.yaml
+  - ./searxng/ks.yaml
