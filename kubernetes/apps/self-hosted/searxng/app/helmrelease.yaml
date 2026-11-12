@@ -24,8 +24,8 @@ spec:
             env:
               TZ: America/New_York
             envFrom:
-              - externalSecretRef:
-                  identifier: searxng
+              - secretRef:
+                  name: searxng
             probes:
               liveness: &probes
                 enabled: true
