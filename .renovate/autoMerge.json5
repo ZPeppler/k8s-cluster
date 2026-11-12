@@ -37,7 +37,7 @@
         "ghcr.io/mogenius/helm-charts/renovate-operator",
         "ghcr.io/stakater/charts/reloader",
       ],
-      schedule: ["before 6am on Friday"],
+      schedule: ["before 6am on Monday"],
     },
   ],
 }
