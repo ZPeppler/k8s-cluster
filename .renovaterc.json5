@@ -1,26 +1,34 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    "github>home-operations/renovate-presets#11.0.0",
-    ":timezone(America/New_York)",
-    "local>ZPeppler/k8s-cluster//.renovate/customDatasources.json5",
-    "local>ZPeppler/k8s-cluster//.renovate/customManagers.json5",
-    "local>ZPeppler/k8s-cluster//.renovate/packageRules.json5",
+    'github>home-operations/renovate-presets#11.0.0',
+    ':timezone(America/New_York)',
+    'local>ZPeppler/k8s-cluster//.renovate/customDatasources.json5',
+    'local>ZPeppler/k8s-cluster//.renovate/customManagers.json5',
+    'local>ZPeppler/k8s-cluster//.renovate/packageRules.json5',
   ],
-  reviewers: ["ZPeppler"],
+  reviewers: [
+    'ZPeppler',
+  ],
   hostRules: [
     {
-      matchHost: "code.forgejo.org",
-      hostType: "docker",
+      matchHost: 'code.forgejo.org',
+      hostType: 'docker',
       enabled: true,
     },
   ],
-  dependencyDashboardTitle: "Renovate Dashboard 🤖",
-  schedule: ["every weekend"],
+  dependencyDashboard: {
+    title: 'Renovate Dashboard 🤖',
+  },
+  schedule: [
+    'every weekend',
+  ],
   lockFileMaintenance: {
     enabled: true,
-    schedule: ["before 3am on the first day of the month"],
-    commitMessageExtra: "({{manager}})",
-    additionalBranchPrefix: "{{manager}}-",
+    schedule: [
+      'before 3am on the first day of the month',
+    ],
+    commitMessageExtra: '({{manager}})',
+    additionalBranchPrefix: '{{manager}}-',
   },
 }
