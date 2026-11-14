@@ -2,6 +2,9 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: "Flate"
 
+env:
+  DUMMY_VALUES: "./kubernetes/apps/dev/renovate/jobs/dummy-values.yaml"
+
 on:
   pull_request:
     branches:
@@ -47,7 +50,7 @@ jobs:
 
       - name: Run Flate
         id: flate
-        run: flate test all -p ./kubernetes/apps --supply ./.github/workflows/dummy-values.yaml
+        run: flate test all -p ./kubernetes/apps --supply $DUMMY_VALUES
 
   success:
     if: ${{ !cancelled() }}
