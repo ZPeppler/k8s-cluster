@@ -7,3 +7,16 @@ data:
   password: >-
     VGVzdFBhc3N3b3JkTm90UmVhbAo=
 type: kubernetes.io/basic-auth
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: kanidm-persons-secret
+  namespace: security
+stringData:
+  KANIDM_DISPLAYNAME: user
+  KANIDM_EMAIL: user@example.com
+  KANIDM_EMAIL2: user2@example.net
+  KANIDM_LEGALNAME: Test User
+  KANIDM_USERNAME: test_user
+type: Opaque
