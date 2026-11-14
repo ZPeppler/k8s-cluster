@@ -36,18 +36,11 @@ spec:
               readiness: *probes
             resources:
               requests:
-                cpu: 25m
-                memory: 128Mi
+                cpu: 5m
+                memory: 32Mi
               limits:
-                memory: 1Gi
+                memory: 256Mi
     persistence:
-      config:
-        type: configMap
-        name: searxng-config
-        globalMounts:
-          - path: /etc/searxng/settings.yml
-            subPath: settings.yaml
-            readOnly: true
       tpmfs:
         type: emptyDir
         globalMounts:
