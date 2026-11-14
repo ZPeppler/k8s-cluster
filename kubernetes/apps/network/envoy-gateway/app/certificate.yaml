@@ -2,7 +2,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "${SECRET_DOMAIN/./-}-production"
+  name: "fade-lab-com-production"
 spec:
   dnsNames:
     - "fade-lab.com"
@@ -13,6 +13,6 @@ spec:
     kind: ClusterIssuer
   privateKey:
     algorithm: ECDSA
-  secretName: "${SECRET_DOMAIN/./-}-production-tls"
+  secretName: "fade-lab-com-production-tls"
   usages:
     - digital signature

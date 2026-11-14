@@ -56,7 +56,7 @@ spec:
           requests:
             storage: 50Gi
         storageClassName: ceph-block
-  tlsSecretName: idm-${SECRET_DOMAIN/./-}-tls
+  tlsSecretName: idm-fade-lab-com-tls
   gateway:
     parentRefs:
       - group: gateway.networking.k8s.io

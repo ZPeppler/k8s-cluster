@@ -69,7 +69,7 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: ${SECRET_DOMAIN/./-}-production-tls
+            name: fade-lab-com-production-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
@@ -99,7 +99,7 @@ spec:
       tls:
         certificateRefs:
           - kind: Secret
-            name: ${SECRET_DOMAIN/./-}-production-tls
+            name: fade-lab-com-production-tls
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: BackendTrafficPolicy
