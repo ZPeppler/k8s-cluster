@@ -17,7 +17,7 @@ spec:
     httpRoute:
       enabled: true
       hostnames:
-        - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        - "{{ .Release.Name }}.fade-lab.com"
       parentRefs:
         - name: envoy-external
           namespace: network

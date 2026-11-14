@@ -50,7 +50,7 @@ jobs:
 
       - name: Run Flate
         id: flate
-        run: flate test all -p ./kubernetes/apps --supply $DUMMY_VALUES
+        run: flate test all -p ./kubernetes/apps
 
   success:
     if: ${{ !cancelled() }}

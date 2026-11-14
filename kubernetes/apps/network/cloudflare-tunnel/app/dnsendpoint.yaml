@@ -5,6 +5,6 @@ metadata:
   name: cloudflare-tunnel
 spec:
   endpoints:
-    - dnsName: "external.${SECRET_DOMAIN}"
+    - dnsName: "external.fade-lab.com"
       recordType: CNAME
       targets: ["bafa0eae-7cfe-412f-933f-302e064716e6.cfargotunnel.com"]

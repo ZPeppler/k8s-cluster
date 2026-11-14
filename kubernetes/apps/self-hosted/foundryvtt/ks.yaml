@@ -14,9 +14,6 @@ spec:
   interval: 1h
   path: ./kubernetes/apps/self-hosted/foundryvtt/app
   postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
     substitute:
       APP: *app
       APP_REQUEST: 10Gi

@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   hostnames:
-    - hubble.${SECRET_DOMAIN}
+    - hubble.fade-lab.com
   parentRefs:
     - name: envoy-external
       namespace: network

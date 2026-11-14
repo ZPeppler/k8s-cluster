@@ -9,9 +9,6 @@ spec:
   interval: 1h
   path: ./kubernetes/apps/flux-system/flux-operator/app
   postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
     substitute:
       APP: *app
       KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/flux-operator.svg

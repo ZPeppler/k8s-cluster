@@ -9,10 +9,10 @@ spec:
       name: ${APP}
   oidc:
     provider:
-      issuer: https://idm.${SECRET_DOMAIN}/oauth2/openid/${APP}
+      issuer: https://idm.fade-lab.com/oauth2/openid/${APP}
     clientID: ${APP}
     clientSecret:
       name: ${APP}-kanidm-oauth2-credentials
-    redirectURL: https://${ENVOY_SUBDOMAIN:=${APP}}.${SECRET_DOMAIN}/oauth2/callback
+    redirectURL: https://${ENVOY_SUBDOMAIN:=${APP}}.fade-lab.com/oauth2/callback
     logoutPath: /logout
     refreshToken: true

@@ -4,7 +4,7 @@ metadata:
   name: rook-dashboard
 spec:
   hostnames:
-    - rook.${SECRET_DOMAIN}
+    - rook.fade-lab.com
   parentRefs:
     - name: envoy-external
       namespace: network

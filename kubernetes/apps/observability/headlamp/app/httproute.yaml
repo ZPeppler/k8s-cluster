@@ -5,7 +5,7 @@ metadata:
   name: headlamp
 spec:
   hostnames:
-    - headlamp.${SECRET_DOMAIN}
+    - headlamp.fade-lab.com
   parentRefs:
     - name: envoy-external
       namespace: network

@@ -5,8 +5,8 @@ metadata:
   name: "${SECRET_DOMAIN/./-}-production"
 spec:
   dnsNames:
-    - "${SECRET_DOMAIN}"
-    - "*.${SECRET_DOMAIN}"
+    - "fade-lab.com"
+    - "*.fade-lab.com"
   duration: 160h
   issuerRef:
     name: letsencrypt-production

@@ -4,7 +4,7 @@ metadata:
   name: foundryvtt
 spec:
   hostnames:
-    - foundryvtt-11.${SECRET_DOMAIN}
+    - foundryvtt-11.fade-lab.com
   parentRefs:
     - name: envoy-external
       namespace: network
@@ -20,7 +20,7 @@ metadata:
   name: foundryvtt-internal
 spec:
   hostnames:
-    - fvtt.${SECRET_DOMAIN}
+    - fvtt.fade-lab.com
   parentRefs:
     - name: envoy-internal
       namespace: network

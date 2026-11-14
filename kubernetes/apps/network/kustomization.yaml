@@ -5,7 +5,6 @@ namespace: network
 
 components:
   - ../../components/namespace
-  - ../../components/sops
 
 resources:
   - ./cloudflare-dns/ks.yaml

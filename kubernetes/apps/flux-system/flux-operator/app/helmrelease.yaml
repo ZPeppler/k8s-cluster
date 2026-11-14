@@ -25,13 +25,13 @@ spec:
       create: true
     web:
       config:
-        baseURL: https://flux.${SECRET_DOMAIN}
+        baseURL: https://flux.fade-lab.com
         authentication:
           type: OAuth2
           oauth2:
             provider: OIDC
             clientID: flux-operator
-            issuerURL: https://idm.${SECRET_DOMAIN}/oauth2/openid/flux-operator
+            issuerURL: https://idm.fade-lab.com/oauth2/openid/flux-operator
             scopes:
               - openid
               - email
