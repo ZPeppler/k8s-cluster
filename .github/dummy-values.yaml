@@ -7,3 +7,12 @@ data:
   password: >-
     VGVzdFBhc3N3b3JkTm90UmVhbAo=
 type: kubernetes.io/basic-auth
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: cluster-secrets
+  namespace: security
+data:
+  SECRET_DOMAIN: ZXhhbXBsZS5jb20K
+type: Opaque

@@ -47,7 +47,7 @@ jobs:
 
       - name: Run Flate
         id: flate
-        run: flate test all -p ./kubernetes/apps
+        run: flate test all -p ./kubernetes/apps --supply ./.github/workflows/dummy-values.yaml
 
   success:
     if: ${{ !cancelled() }}
