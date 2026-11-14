@@ -18,13 +18,13 @@ spec:
     clusterRoleBinding:
       create: false
     config:
-      baseurl: "https://headlamp.${SECRET_DOMAIN}"
+      baseurl: "https://headlamp.fade-lab.com"
       watchPlugins: true
       oidc:
         clientID: *app
-        issuerURL: https://idm.${SECRET_DOMAIN}/oauth2/openid/headlamp
+        issuerURL: https://idm.fade-lab.com/oauth2/openid/headlamp
         scopes: "openid,profile,email,groups"
-        callbackURL: https://headlamp.${SECRET_DOMAIN}/oidc-callback
+        callbackURL: https://headlamp.fade-lab.com/oidc-callback
     podAnnotations:
       reloader.stakater.com/auto: "true"
     serviceAccount:

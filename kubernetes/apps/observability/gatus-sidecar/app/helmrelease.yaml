@@ -28,7 +28,7 @@ spec:
       annotations:
         gatus.home-operations.com/enabled: "false"
       hostnames:
-        - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        - "{{ .Release.Name }}.fade-lab.com"
       parentRefs:
         - name: envoy-external
           namespace: network

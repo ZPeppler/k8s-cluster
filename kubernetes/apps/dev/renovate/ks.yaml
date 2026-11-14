@@ -20,9 +20,6 @@ spec:
   interval: 1h
   path: "./kubernetes/apps/dev/renovate/app"
   postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
     substitute:
       APP: *app
       KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/renovate.svg

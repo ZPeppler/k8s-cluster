@@ -5,7 +5,7 @@ metadata:
   name: forgejo-external
 spec:
   hostnames:
-    - git.${SECRET_DOMAIN}
+    - git.fade-lab.com
   parentRefs:
     - name: envoy-external
       namespace: network

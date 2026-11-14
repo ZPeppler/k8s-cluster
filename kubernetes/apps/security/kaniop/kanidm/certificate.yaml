@@ -2,10 +2,10 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: "idm-${SECRET_DOMAIN/./-}"
+  name: "idm-fade-lab-com"
 spec:
   dnsNames:
-    - "idm.${SECRET_DOMAIN}"
+    - "idm.fade-lab.com"
   duration: 2160h
   issuerRef:
     kind: ClusterIssuer
@@ -15,7 +15,7 @@ spec:
     rotationPolicy: Always
     size: 256
   renewBefore: 360h
-  secretName: "idm-${SECRET_DOMAIN/./-}-tls"
+  secretName: "idm-fade-lab-com-tls"
   usages:
     - digital signature
     - key encipherment

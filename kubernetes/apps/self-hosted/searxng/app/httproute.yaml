@@ -4,7 +4,7 @@ metadata:
   name: &app searxng
 spec:
   hostnames:
-    - search.${SECRET_DOMAIN}
+    - search.fade-lab.com
   parentRefs:
     - name: envoy-external
       namespace: network

@@ -46,12 +46,12 @@ kind: Gateway
 metadata:
   name: envoy-external
   annotations:
-    external-dns.kubernetes.io/target: external.${SECRET_DOMAIN}
+    external-dns.kubernetes.io/target: external.fade-lab.com
 spec:
   gatewayClassName: envoy
   infrastructure:
     annotations:
-      external-dns.kubernetes.io/hostname: external.${SECRET_DOMAIN}
+      external-dns.kubernetes.io/hostname: external.fade-lab.com
       lbipam.cilium.io/ips: "192.168.1.253"
   listeners:
     - name: http
@@ -76,12 +76,12 @@ kind: Gateway
 metadata:
   name: envoy-internal
   annotations:
-    external-dns.kubernetes.io/target: internal.${SECRET_DOMAIN}
+    external-dns.kubernetes.io/target: internal.fade-lab.com
 spec:
   gatewayClassName: envoy
   infrastructure:
     annotations:
-      external-dns.kubernetes.io/hostname: internal.${SECRET_DOMAIN}
+      external-dns.kubernetes.io/hostname: internal.fade-lab.com
       lbipam.cilium.io/ips: "192.168.1.251"
   listeners:
     - name: http

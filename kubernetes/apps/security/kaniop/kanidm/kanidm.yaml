@@ -4,7 +4,7 @@ kind: Kanidm
 metadata:
   name: kanidm
 spec:
-  domain: idm.${SECRET_DOMAIN}
+  domain: idm.fade-lab.com
   groupNamespaceSelector: {}
   oauth2ClientNamespaceSelector: {}
   personNamespaceSelector: {}
@@ -20,9 +20,9 @@ spec:
         - reindex
       env:
         - name: KANIDM_DOMAIN
-          value: idm.${SECRET_DOMAIN}
+          value: idm.fade-lab.com
         - name: KANIDM_ORIGIN
-          value: https://idm.${SECRET_DOMAIN}
+          value: https://idm.fade-lab.com
         - name: KANIDM_DB_PATH
           value: /data/kanidm.db
         - name: KANIDM_TLS_CHAIN
@@ -65,8 +65,8 @@ spec:
         namespace: network
         sectionName: https
     hostnames:
-      - idm.${SECRET_DOMAIN}
+      - idm.fade-lab.com
     backendTlsPolicy:
       validation:
-        hostname: idm.${SECRET_DOMAIN}
+        hostname: idm.fade-lab.com
         wellKnownCaCertificates: System

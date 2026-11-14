@@ -15,9 +15,6 @@ spec:
       app.kubernetes.io/name: *app
   path: ./kubernetes/apps/dev/forgejo/app
   postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
     substitute:
       APP: *app
       APP_REQUEST: 100Gi

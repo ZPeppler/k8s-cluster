@@ -72,8 +72,6 @@ spec:
     substitute:
       APP: *app
     substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
       - name: kanidm-persons-secret
         kind: Secret
   prune: true

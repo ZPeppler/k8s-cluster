@@ -13,7 +13,7 @@ spec:
     auth:
       oidc:
         enabled: true
-        issuerUrl: "https://idm.${SECRET_DOMAIN}/oauth2/openid/renovate-operator"
+        issuerUrl: "https://idm.fade-lab.com/oauth2/openid/renovate-operator"
         clientId: *app
         existingSecret: renovate-operator-kanidm-oauth2-credentials
         secretKey: secret
@@ -30,7 +30,7 @@ spec:
     route:
       enabled: true
       hostnames:
-        - renovate.${SECRET_DOMAIN}
+        - renovate.fade-lab.com
       parentRefs:
         - name: envoy-external
           namespace: network

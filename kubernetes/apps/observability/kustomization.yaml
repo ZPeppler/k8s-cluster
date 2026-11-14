@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: observability
 components:
   - ../../components/namespace
-  - ../../components/sops
 resources:
   - ./gatus-sidecar/ks.yaml
   - ./grafana-operator/ks.yaml

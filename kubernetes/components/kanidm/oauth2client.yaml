@@ -10,9 +10,9 @@ spec:
   kanidmRef:
     name: kanidm
     namespace: security
-  origin: https://${KANIDM_ORIGIN_HOST}.${SECRET_DOMAIN}
+  origin: https://${KANIDM_ORIGIN_HOST}.fade-lab.com
   redirectUrl:
-    - https://${KANIDM_ORIGIN_HOST}.${SECRET_DOMAIN}/${KANIDM_REDIRECT_PATH}
+    - https://${KANIDM_ORIGIN_HOST}.fade-lab.com/${KANIDM_REDIRECT_PATH}
   scopeMap:
     - group: ${KANIDM_GROUP:=${APP}-users}
       scopes:

@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: database
 components:
   - ../../components/namespace
-  - ../../components/sops
 resources:
   - ./cloudnative-pg/ks.yaml
   - ./dragonfly/ks.yaml

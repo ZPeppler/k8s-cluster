@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: external-secrets
 components:
   - ../../components/namespace
-  - ../../components/sops
 resources:
   - ./external-secrets/ks.yaml
   - ./onepassword-connect/ks.yaml

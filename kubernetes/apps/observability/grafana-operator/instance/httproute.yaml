@@ -5,7 +5,7 @@ metadata:
   name: grafana
 spec:
   hostnames:
-    - grafana.${SECRET_DOMAIN}
+    - grafana.fade-lab.com
   parentRefs:
     - name: envoy-external
       namespace: network

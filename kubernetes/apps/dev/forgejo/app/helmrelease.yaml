@@ -49,7 +49,7 @@ spec:
           DEFAULT_MERGE_STYLE: squash
         server:
           APP_DATA_PATH: /data/gitea
-          ROOT_URL: https://git.${SECRET_DOMAIN}
+          ROOT_URL: https://git.fade-lab.com
         session:
           PROVIDER: redis
           PROVIDER_CONFIG: redis://forgejo-dragonfly:6379/1
@@ -59,10 +59,10 @@ spec:
       oauth:
         - name: kanidm
           provider: openidConnect
-          autoDiscoverUrl: https://idm.${SECRET_DOMAIN}/oauth2/openid/forgejo/.well-known/openid-configuration
+          autoDiscoverUrl: https://idm.fade-lab.com/oauth2/openid/forgejo/.well-known/openid-configuration
           existingSecret: forgejo-kanidm-oauth2-credentials
           groupClaimName: groups
-          adminGroup: sys-admin@idm.${SECRET_DOMAIN}
+          adminGroup: sys-admin@idm.fade-lab.com
           scopes: profile email groups
     httpRoute:
       enabled: false

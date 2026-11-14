@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: dev
 components:
   - ../../components/namespace
-  - ../../components/sops
 resources:
   - ./forgejo/ks.yaml
   - ./renovate/ks.yaml

@@ -32,9 +32,6 @@ spec:
   interval: 1h
   path: ./kubernetes/apps/observability/grafana-operator/instance
   postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
     substitute:
       APP: *app
       KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/selfhst/icons/svg/grafana.svg
