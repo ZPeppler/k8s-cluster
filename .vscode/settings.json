@@ -12,4 +12,7 @@
   "yaml.schemas": {
     "kubernetes": "./kubernetes/**/*.yaml"
   }
+  //   "[yaml]": {
+  //     "editor.defaultFormatter": "oxc.oxc-vscode",
+  //  V }
 }
