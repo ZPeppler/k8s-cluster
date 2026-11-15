@@ -24,6 +24,9 @@ spec:
                   secretKeyRef:
                     name: apoci-postgres-app
                     key: fqdn-uri
+            envFrom:
+              - secretRef:
+                  name: *app
             probes:
               liveness: &probes
                 enabled: true
