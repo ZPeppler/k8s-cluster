@@ -1,0 +1,9 @@
+---
+endpoint: "https://registry.fade-lab.com"
+accountDomain: "fade-lab.com"
+listen: ":5000"
+dataDir: "/data"
+logFormat: json
+
+database:
+  driver: postgres

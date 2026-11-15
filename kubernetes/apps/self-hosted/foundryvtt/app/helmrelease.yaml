@@ -71,3 +71,8 @@ spec:
     persistence:
       data:
         existingClaim: "foundryvtt-pvc"
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
+            subPath: tmp

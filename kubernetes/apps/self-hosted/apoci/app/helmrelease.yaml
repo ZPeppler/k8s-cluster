@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app foundryvtt
+  name: &app apoci
 spec:
   interval: 1h
   chartRef:
@@ -10,52 +10,34 @@ spec:
     name: *app
   values:
     controllers:
-      foundryvtt:
+      apoci:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: docker.io/felddy/foundryvtt
-              tag: 13.351.0@sha256:41d518782f2fabbec887413c56da8ef8175c22fb5a75fde45382661443a8ae6b
+              repository: registry.erwanleboucher.dev/eleboucher/apoci
+              tag: 0.0.56@sha256:dc69427322dd5931084c255097d70a1db857cfd4f3fe17a23e0d44921948b1d4
             env:
-              CONTAINER_CACHE: /data/container_cache
-              CONTAINER_VERBOSE: "true"
-              FOUNDRY_COMPRESS_WEBSOCKET: "true"
-              FOUNDRY_CSS_THEME: fantasy
-              FOUNDRY_IP_DISCOVERY: "false"
-              FOUNDRY_MINIFY_STATIC_FILES: "true"
-              FOUNDRY_PROTOCOL: "4"
-              FOUNDRY_PROXY_PORT: "443"
-              FOUNDRY_PROXY_SSL: "true"
-              FOUNDRY_TELEMETRY: "false"
-              FOUNDRY_UPNP: "false"
-              TZ: America/New_York
-            envFrom:
-              - secretRef:
-                  name: foundryvtt-secret
+              APOCI_DB_DSN:
+                valueFrom:
+                  secretKeyRef:
+                    name: apoci-postgres-app
+                    key: fqdn
             probes:
               liveness: &probes
                 enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /api/status
-                    port: &port 30000
-                  initialDelaySeconds: 10
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
               readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: false
-              capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 100m
+                cpu: 10m
+                memory: 128Mi
               limits:
-                memory: 8Gi
+                memory: 512Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -67,7 +49,18 @@ spec:
       app:
         ports:
           http:
-            port: *port
+            port: 5000
     persistence:
+      config:
+        type: configMap
+        name: apoci-config
+        globalMounts:
+          - path: /apoci/config/apoci.yaml
+            subPath: apoci.yaml
       data:
-        existingClaim: "foundryvtt-pvc"
+        existingClaim: "apoci-pvc"
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
+            subPath: tmp
