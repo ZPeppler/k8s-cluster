@@ -7,3 +7,46 @@ logFormat: json
 
 database:
   driver: postgres
+
+peering:
+  healthCheckInterval: 30s
+  fetchTimeout: 60s
+
+limits:
+  maxBlobSize: 5368709120 # 5 GiB
+
+gc:
+  untaggedManifestAge: 1h
+  orphanBatchSize: 10000
+  interval: 30m
+  diskUsageThreshold: 80
+  diskUsageCheckInterval: 5m
+  retention:
+    maxAge: 168h
+    pinnedGlobs:
+      - "v*"
+      - "*.*.*"
+    perRepo:
+      - repo: "fade-lab.com/zpeppler/k8s-cluster"
+        keepLastN: 7
+        maxAge: 24h
+
+metrics:
+  enabled: true
+  listen: ":9090"
+
+federation:
+  autoAccept: mutual
+  excludedRepos:
+    - "*/*-buildcache"
+
+upstreams:
+  enabled: true
+  registries:
+    - name: docker.io
+      endpoint: "https://registry-1.docker.io"
+    - name: ghcr.io
+      endpoint: "https://ghcr.io"
+
+ui:
+  enabled: true
