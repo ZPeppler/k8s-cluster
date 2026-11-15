@@ -52,7 +52,36 @@ spec:
       app:
         ports:
           http:
-            port: 5000
+            port: &port 5000
+    route:
+      app:
+        hostnames:
+          - "registry.fade-lab.com"
+        parentRefs:
+          - name: envoy-external
+            namespace: network
+      webfinger:
+        hostnames:
+          - "fade-lab.com"
+        rules:
+          - matches:
+              - path:
+                  type: Exact
+                  value: /.well-known/webfinger
+                queryParams:
+                  - name: resource
+                    type: RegularExpression
+                    value: ".*registry@.*"
+            filters:
+              - type: URLRewrite
+                urlRewrite:
+                  hostname: registry.fade-lab.com
+            backendRefs:
+              - identifier: app
+                port: *port
+        parentRefs:
+          - name: envoy-external
+            namespace: network
     persistence:
       config:
         type: configMap
