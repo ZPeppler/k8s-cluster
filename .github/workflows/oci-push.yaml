@@ -23,7 +23,7 @@ jobs:
       OCI_USER: registry
       OCI_PASS: ${{ secrets.APOCI_SECRET_KEY }}
     steps:
-      - uses: fluxcd/flux2/checkout@3fa784edd773d56630bb9f62645e08f70c2cff0a
+      - uses: fluxcd/flux2@3fa784edd773d56630bb9f62645e08f70c2cff0a
         with:
           persist-credentials: false
 
