@@ -38,6 +38,14 @@
       minimumGroupSize: 2,
     },
     {
+      matchPackageNames: ["ghcr.io/cloudnative-pg/postgresql"],
+      allowedVersions: "/^18\\./",
+    },
+    {
+      matchPackageNames: ["docker.io/felddy/foundryvtt"],
+      allowedVersions: "/^13\\./",
+    },
+    {
       matchUpdateTypes: ["major"],
       addLabels: ["type/major"],
     },

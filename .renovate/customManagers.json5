@@ -13,5 +13,15 @@
       versioningTemplate: "semver",
       depNameTemplate: "siderolabs/talos",
     },
+    {
+      description: "CNPG postgres images",
+      customType: "regex",
+      managerFilePatterns: ["/^kubernetes/components/cnpg/.+/cluster\\.ya?ml$/"],
+      matchStrings: [
+        "imageName:\\s*[\"']?(?<depName>ghcr\\.io/cloudnative-pg/postgresql):(?<currentValue>[^\"'\\s]+)[\"']?",
+      ],
+      datasourceTemplate: "docker",
+      versioningTemplate: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)-minimal-trixie$",
+    },
   ],
 }
