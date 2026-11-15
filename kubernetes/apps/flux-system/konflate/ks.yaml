@@ -2,10 +2,25 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: konflate
+  name: &app konflate
 spec:
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/envoy/securitypolicy
+    - ../../../../components/kanidm
   interval: 1h
   path: ./kubernetes/apps/flux-system/konflate/app
+  postBuild:
+    substitute:
+      APP: *app
+      ENVOY_SUBDOMAIN: *app
+      KANIDM_APP_ICON: https://github.com/home-operations/konflate/blob/main/internal/web/public/favicon.svg
+      KANIDM_CLIENT_SECRET: client-secret
+      KANIDM_GROUP: k8s-admin
+      KANIDM_ORIGIN_HOST: *app
+      KANIDM_REDIRECT_PATH: oauth2/callback
   prune: true
   sourceRef:
     kind: GitRepository
