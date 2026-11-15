@@ -23,7 +23,9 @@ jobs:
       OCI_USER: registry
       OCI_PASS: ${{ secrets.APOCI_SECRET_KEY }}
     steps:
-      - uses: https://data.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Push OCI Artifact
         id: push
