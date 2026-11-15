@@ -4,6 +4,7 @@ namespace: self-hosted
 components:
   - ../../components/namespace
 resources:
+  - ./apoci/ks.yaml
   - ./foundryvtt/ks.yaml
   - ./it-tools/ks.yaml
   - ./searxng/ks.yaml
