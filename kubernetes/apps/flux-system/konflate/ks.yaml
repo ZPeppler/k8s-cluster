@@ -16,7 +16,7 @@ spec:
     substitute:
       APP: *app
       ENVOY_SUBDOMAIN: *app
-      KANIDM_APP_ICON: https://github.com/home-operations/konflate/blob/main/internal/web/public/favicon.svg
+      KANIDM_APP_ICON: https://raw.githubusercontent.com/home-operations/konflate/d562d621ad972b11e41e16e10a8d950d6d56a5a5/internal/web/public/favicon.svg
       KANIDM_CLIENT_SECRET: client-secret
       KANIDM_GROUP: k8s-admin
       KANIDM_ORIGIN_HOST: *app
