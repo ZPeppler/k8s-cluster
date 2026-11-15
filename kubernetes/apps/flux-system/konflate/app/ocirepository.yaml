@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: flux-operator
+  name: konflate
 spec:
   interval: 15m
   layerSelector:
