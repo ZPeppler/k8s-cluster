@@ -49,7 +49,7 @@ jobs:
           flux tag artifact ${OCI_REPO}:${{ github.sha }} --tag main \
             --creds=${OCI_USER}:${OCI_PASS}
 
-      - uses: sigstore/cosign-installer/action@756fe2d284c7292c4e9b62c8a28f1e5629c59532
+      - uses: sigstore/cosign-installer@756fe2d284c7292c4e9b62c8a28f1e5629c59532
 
       - name: Sign OCI artifact
         env:
