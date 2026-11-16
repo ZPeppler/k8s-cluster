@@ -48,3 +48,17 @@ jobs:
         run: |
           flux tag artifact ${OCI_REPO}:${{ github.sha }} --tag main \
             --creds=${OCI_USER}:${OCI_PASS}
+
+      - uses: sigtore/cosign-installer/action@756fe2d284c7292c4e9b62c8a28f1e5629c59532
+
+      - name: Sign OCI artifact
+        env:
+          COSIGN_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+          STEPS_PUSH_OUTPUTS_DIGEST_URL: ${{ steps.push.outputs.digest-url }}
+        run: |-
+          cosign sign --yes \
+            --key env://COSIGN_KEY \
+            --registry-username=${OCI_USER} \
+            --registry-password=${OCI_PASS} \
+            ${STEPS_PUSH_OUTPUTS_DIGEST_URL}
