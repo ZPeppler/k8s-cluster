@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - feat/swap-to-oci
     paths:
       - kubernetes/**
   workflow_dispatch:
@@ -45,6 +46,7 @@ jobs:
           echo "digest-url=$DIGEST_URL" >> "$GITHUB_OUTPUT"
 
       - name: Tag mutable ref
+        if: github.ref == 'refs/heads/main'
         run: |
           flux tag artifact ${OCI_REPO}:${{ github.sha }} --tag main \
             --creds=${OCI_USER}:${OCI_PASS}
