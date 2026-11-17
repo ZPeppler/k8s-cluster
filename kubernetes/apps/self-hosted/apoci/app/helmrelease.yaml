@@ -60,6 +60,8 @@ spec:
         parentRefs:
           - name: envoy-external
             namespace: network
+          - name: envoy-internal
+            namespace: network
       webfinger:
         hostnames:
           - "fade-lab.com"
