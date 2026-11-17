@@ -20,9 +20,9 @@ spec:
         - helm-controller
         - notification-controller
       sync:
-        kind: GitRepository
-        url: "https://github.com/ZPeppler/k8s-cluster.git"
-        ref: "refs/heads/main"
+        kind: OCIRepository
+        url: oci://registry.fade-lab.com/k8s-cluster
+        ref: main
         path: kubernetes/flux/cluster
       commonMetadata:
         labels:
