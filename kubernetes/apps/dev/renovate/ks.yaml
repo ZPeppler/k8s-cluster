@@ -28,7 +28,7 @@ spec:
       KANIDM_REDIRECT_PATH: auth/callback
   prune: true
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: *namespace
@@ -50,7 +50,7 @@ spec:
   path: "./kubernetes/apps/dev/renovate/jobs"
   prune: true
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: *namespace
