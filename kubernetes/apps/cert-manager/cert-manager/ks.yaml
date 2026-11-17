@@ -20,7 +20,7 @@ spec:
   path: ./kubernetes/apps/cert-manager/cert-manager/app
   prune: true
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: cert-manager

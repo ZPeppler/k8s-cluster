@@ -10,7 +10,7 @@ spec:
   path: ./kubernetes/apps/observability/grafana-operator/app
   prune: true
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: observability
@@ -40,7 +40,7 @@ spec:
       KANIDM_REDIRECT_PATH: login/generic_oauth
   prune: true
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: observability

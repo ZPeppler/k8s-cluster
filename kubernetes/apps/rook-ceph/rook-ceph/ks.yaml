@@ -10,7 +10,7 @@ spec:
   path: ./kubernetes/apps/rook-ceph/rook-ceph/operator
   prune: true
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: rook-ceph
@@ -42,7 +42,7 @@ spec:
   path: ./kubernetes/apps/rook-ceph/rook-ceph/cluster
   prune: true
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: rook-ceph
