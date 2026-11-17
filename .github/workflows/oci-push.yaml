@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - feat/swap-to-oci
     paths:
       - kubernetes/**
   workflow_dispatch:
