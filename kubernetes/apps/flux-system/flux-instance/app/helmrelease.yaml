@@ -24,6 +24,11 @@ spec:
         url: oci://registry.fade-lab.com/k8s-cluster
         ref: main
         path: kubernetes/flux/cluster
+        verify:
+          provider: cosign
+          secretRef:
+            name: cosign-public-key
+        interval: 1h
       commonMetadata:
         labels:
           app.kubernetes.io/name: flux
