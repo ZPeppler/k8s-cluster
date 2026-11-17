@@ -19,7 +19,7 @@ spec:
       KANIDM_REDIRECT_PATH: oidc-callback
   prune: true
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: observability

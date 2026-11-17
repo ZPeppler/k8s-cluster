@@ -17,7 +17,7 @@ spec:
   prune: true
   retryInterval: 1m
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   timeout: 5m
@@ -42,7 +42,7 @@ spec:
   prune: true
   retryInterval: 1m
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   timeout: 5m
@@ -77,7 +77,7 @@ spec:
   prune: true
   retryInterval: 1m
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: flux-system
     namespace: flux-system
   timeout: 5m
