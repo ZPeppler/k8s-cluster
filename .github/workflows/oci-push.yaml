@@ -58,11 +58,11 @@ jobs:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
           STEPS_PUSH_OUTPUTS_DIGEST_URL: ${{ steps.push.outputs.digest-url }}
         run: |-
-          cosign sign --yes \
+          echo "${OCI_PASS}" \
+            cosign sign --yes \
             --key env://COSIGN_KEY \
-            --registry-username=${OCI_USER} \
-            --registry-password=${OCI_PASS} \
-            ${STEPS_PUSH_OUTPUTS_DIGEST_URL}
+            -u "${OCI_USER}" \
+            "${STEPS_PUSH_OUTPUTS_DIGEST_URL}""
 
   reconcile:
     runs-on: ubuntu-latest
