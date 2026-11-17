@@ -59,10 +59,11 @@ jobs:
           STEPS_PUSH_OUTPUTS_DIGEST_URL: ${{ steps.push.outputs.digest-url }}
         run: |-
           echo "${OCI_PASS}" \
-            cosign sign --yes \
+            | cosign login registry.fade-lab.com \
+            -u "${OCI_USER}" --password-stdin
+          cosign sign --yes \
             --key env://COSIGN_KEY \
-            -u "${OCI_USER}" \
-            "${STEPS_PUSH_OUTPUTS_DIGEST_URL}""
+            "${STEPS_PUSH_OUTPUTS_DIGEST_URL}"
 
   reconcile:
     runs-on: ubuntu-latest
