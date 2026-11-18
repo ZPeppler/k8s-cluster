@@ -6,3 +6,4 @@ components:
 resources:
   - ./forgejo/ks.yaml
   - ./renovate/ks.yaml
+  - ./toolbox/ks.yaml
