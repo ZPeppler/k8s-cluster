@@ -64,6 +64,14 @@ spec:
           groupClaimName: groups
           adminGroup: sys-admin@idm.fade-lab.com
           scopes: profile email groups
+    extraVolumes:
+      - name: forgejo-themes
+        secret:
+          secretName: forgejo-themes
+    extraVolumeMounts:
+      - name: forgejo-themes
+        readOnly: true
+        mountPath: "/data/gitea/public/assets/css"
     httpRoute:
       enabled: false
     image:

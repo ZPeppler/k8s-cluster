@@ -1,0 +1,82 @@
+:root {
+  /* neutral scale: darkest (900) to lightest (100), gruvbox-material dark/medium */
+  --steel-900: #1b1b1b;
+  --steel-850: #202020;
+  --steel-800: #282828;
+  --steel-750: #2d2b2a;
+  --steel-700: #32302f;
+  --steel-650: #383432;
+  --steel-600: #45403d;
+  --steel-550: #504945;
+  --steel-500: #5a524c;
+  --steel-450: #665c54;
+  --steel-400: #7c6f64;
+  --steel-350: #928374;
+  --steel-300: #a89984;
+  --steel-250: #bdae93;
+  --steel-200: #c5b392;
+  --steel-150: #d4be98;
+  --steel-100: #ddc7a1;
+
+  /* primary: green (swap for #e78a4e orange or #7daea3 blue if you prefer) */
+  --color-primary: #a9b665;
+  --color-primary-contrast: #1b1b1b;
+  --color-primary-dark-1: color-mix(in srgb, var(--color-primary), white 12%);
+  --color-primary-dark-2: color-mix(in srgb, var(--color-primary), white 22%);
+  --color-primary-dark-3: color-mix(in srgb, var(--color-primary), white 32%);
+  --color-primary-dark-4: color-mix(in srgb, var(--color-primary), white 42%);
+  --color-primary-light-1: color-mix(in srgb, var(--color-primary), black 12%);
+  --color-primary-light-2: color-mix(in srgb, var(--color-primary), black 24%);
+  --color-primary-light-3: color-mix(in srgb, var(--color-primary), black 36%);
+  --color-primary-light-4: color-mix(in srgb, var(--color-primary), black 48%);
+  --color-primary-light-5: color-mix(in srgb, var(--color-primary), black 58%);
+  --color-primary-light-6: color-mix(in srgb, var(--color-primary), black 68%);
+  --color-primary-light-7: color-mix(in srgb, var(--color-primary), black 76%);
+  --color-primary-alpha-10: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  --color-primary-alpha-20: color-mix(in srgb, var(--color-primary) 20%, transparent);
+  --color-primary-alpha-30: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  --color-primary-alpha-40: color-mix(in srgb, var(--color-primary) 40%, transparent);
+  --color-primary-alpha-50: color-mix(in srgb, var(--color-primary) 50%, transparent);
+  --color-primary-alpha-60: color-mix(in srgb, var(--color-primary) 60%, transparent);
+  --color-primary-alpha-70: color-mix(in srgb, var(--color-primary) 70%, transparent);
+  --color-primary-alpha-80: color-mix(in srgb, var(--color-primary) 80%, transparent);
+  --color-primary-alpha-90: color-mix(in srgb, var(--color-primary) 90%, transparent);
+
+  /* accents */
+  --color-red: #ea6962;
+  --color-orange: #e78a4e;
+  --color-yellow: #d8a657;
+  --color-olive: #a9b665;
+  --color-green: #a9b665;
+  --color-teal: #89b482;
+  --color-blue: #7daea3;
+  --color-violet: #d3869b;
+  --color-purple: #d3869b;
+  --color-pink: #d3869b;
+
+  --color-ansi-red: #ea6962;
+  --color-ansi-green: #a9b665;
+  --color-ansi-yellow: #d8a657;
+  --color-ansi-blue: #7daea3;
+  --color-ansi-magenta: #d3869b;
+  --color-ansi-cyan: #89b482;
+
+  /* diff + code backgrounds (replaces the #0d1117 / blue overrides at the end) */
+  --color-code-bg: #1b1b1b;
+  --color-diff-added-word-bg: #3f4a2a;
+  --color-diff-added-row-bg: #2b3226;
+  --color-diff-added-row-border: #3f4a2a;
+  --color-diff-removed-word-bg: #5a3331;
+  --color-diff-removed-row-bg: #3c2625;
+  --color-diff-removed-row-border: #5a3331;
+}
+
+/* syntax highlighting */
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kr { color: #ea6962 }
+.chroma .s, .chroma .s1, .chroma .s2, .chroma .sb, .chroma .sd { color: #a9b665 }
+.chroma .m, .chroma .mi, .chroma .mf, .chroma .mh, .chroma .mo, .chroma .mb { color: #d3869b }
+.chroma .c, .chroma .c1, .chroma .cm, .chroma .ch { color: #928374 }
+.chroma .nf, .chroma .na, .chroma .nb { color: #d8a657 }
+.chroma .nc, .chroma .nt { color: #7daea3 }
+.chroma .o, .chroma .ow { color: #e78a4e }
+.chroma .n, .chroma .nn, .chroma .p { color: #d4be98 }
