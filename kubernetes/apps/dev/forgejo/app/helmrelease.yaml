@@ -56,6 +56,8 @@ spec:
         service:
           DISABLE_REGISTRATION: false
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
+        ui:
+          DEFAULT_THEME: forgejo-auto
       oauth:
         - name: kanidm
           provider: openidConnect
