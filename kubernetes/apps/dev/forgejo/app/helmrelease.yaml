@@ -57,7 +57,7 @@ spec:
           DISABLE_REGISTRATION: false
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
         ui:
-          DEFAULT_THEME: forgejo-auto
+          DEFAULT_THEME: gruvbox-material
           THEMES: forgejo-auto, forgejo-light, forgejo-dark, gruvbox-material
       oauth:
         - name: kanidm
