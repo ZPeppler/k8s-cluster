@@ -56,9 +56,6 @@ spec:
         service:
           DISABLE_REGISTRATION: false
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
-        ui:
-          DEFAULT_THEME: gruvbox-material
-          THEMES: forgejo-auto,forgejo-light,forgejo-dark,auto,gitea,arc-green,gruvbox-material
       oauth:
         - name: kanidm
           provider: openidConnect
