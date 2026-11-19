@@ -5,4 +5,5 @@ namespace: security
 components:
   - ../../components/namespace
 resources:
+  - ./anubis/ks.yaml
   - ./kaniop/ks.yaml

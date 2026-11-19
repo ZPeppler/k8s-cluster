@@ -19,47 +19,67 @@ spec:
               repository: ghcr.io/techarohq/anubis
               tag: v1.28.2
             env:
-              SEARXNG_BASE_URL: https://search.fade-lab.com
-              SEARXNG_PORT: &httpPort 8080
-              TZ: America/New_York
-            envFrom:
-              - secretRef:
-                  name: searxng
+              BIND: ":8080"
+              DIFFICULTY: '${ANUBIS_DIFFICULTY:="f"}'
+              ED25519_PRIVATE_KEY_HEX:
+                valueFrom:
+                  secretKeyRef:
+                    name: ${APP}-anubis-key
+                    key: ED25519_PRIVATE_KEY_HEX
+              METRICS_BIND: ":9090"
+              OG_EXPIRY_TIME: "24h"
+              OG_PASSTHROUGH: "true"
+              POLICY_FNAME: "/etc/anubis/policy.yaml"
+              SERVE_ROBOTS_TXT: "true"
+              TARGET: "${ANUBIS_TARGET}"
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
-                  httpGet:
-                    path: /stats
-                    port: *httpPort
-                  initialDelaySeconds: 0
+                  exec:
+                    command:
+                      - "anubis"
+                      - "--healthcheck"
+                  initialDelaySeconds: 1
                   periodSeconds: 10
-                  timeoutSeconds: 2
-                  failureThreshold: 3
               readiness: *probes
             resources:
               requests:
-                cpu: 25m
-                memory: 128Mi
+                memory: 64Mi
               limits:
-                memory: 1Gi
-    persistence:
-      config:
-        type: configMap
-        name: searxng-config
-        globalMounts:
-          - path: /etc/searxng/settings.yml
-            subPath: settings.yaml
-            readOnly: true
-      tpmfs:
-        type: emptyDir
-        globalMounts:
-          - path: /tmp
+                memory: 256Mii
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+              runAsGroup: 1000
+              runAsNonRoot: true
+              runAsUser: 1000
+              seccompProfile:
+                type: RuntimeDefault
+    configMaps:
     service:
-      app:
+      anubis:
         primary: true
-        controller: *app
+        controller: anubis
         ports:
           http:
-            port: *httpPort
+            port: 8080
+            protocol: HTTP
+          metrics:
+            port: 9090
+            protocol: HTTP
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: metrics
+            interval: 30s
+    persistence:
+      policy:
+        type: configMap
+        identifier: policy
+        globalMounts:
+          - path: /etc/anubis
+            readOnly: true
