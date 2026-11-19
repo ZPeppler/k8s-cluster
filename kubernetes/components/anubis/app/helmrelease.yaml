@@ -71,6 +71,10 @@ spec:
               - name: allow-api
                 path_regex: ^/api/.*
                 action: ALLOW
+              - name: allow-git-clients
+                user_agent_regex: ^git/
+                path_regex: ^/.+\.git/(info/refs|git-upload-pack|git-receive-pack)$
+                action: ALLOW
               # ActivityPub federation: inbound from other instances + browser-origin AP fetches.
               # Inert for non-federated apps (no client sends these paths/headers).
               - name: allow-activitypub
