@@ -6,6 +6,7 @@ metadata:
   namespace: &namespace dev
 spec:
   components:
+    - ../../../../components/anubis
     - ../../../../components/cnpg/pg18
     - ../../../../components/dragonfly
     - ../../../../components/kanidm
@@ -18,12 +19,14 @@ spec:
     substitute:
       APP: *app
       APP_REQUEST: 100Gi
+      ANUBIS_TARGET: "http://forgejo-http.dev.svc:3000"
       CNPG_INSTANCES: "3"
       CNPG_MEMORY_LIMIT: 2Gi
       KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/forgejo.svg
       KANIDM_GROUP: git-user
       KANIDM_ORIGIN_HOST: git
       KANIDM_REDIRECT_PATH: user/oauth2/kanidm/callback
+      NAMESPACE: *namespace
   prune: true
   sourceRef:
     kind: OCIRepository

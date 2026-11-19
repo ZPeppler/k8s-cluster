@@ -12,9 +12,17 @@ spec:
   rules:
     - backendRefs:
         - kind: Service
-          name: forgejo-http
-          port: 3000
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
+          name: forgejo-anubis
+          port: 8080
+      filters:
+        - type: CORS
+          cors:
+            allowOrigins:
+              - "*"
+            allowHeaders:
+              - "*"
+            allowMethods:
+              - "*"
+            maxAge: 86400
+      timeouts:
+        request: 300s

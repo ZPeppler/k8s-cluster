@@ -60,6 +60,37 @@ spec:
               seccompProfile:
                 type: RuntimeDefault
     configMaps:
+      policy:
+        suffix: policy
+        data:
+          policy.yaml: |-
+            bots:
+              - import: (data)/apps/gitea-rss-feeds.yaml
+              - import: (data)/clients/git.yaml
+              - import: (data)/clients/docker-client.yaml
+              - name: allow-api
+                path_regex: ^/api/.*
+                action: ALLOW
+              # ActivityPub federation: inbound from other instances + browser-origin AP fetches.
+              # Inert for non-federated apps (no client sends these paths/headers).
+              - name: allow-activitypub
+                action: ALLOW
+                expression:
+                  any:
+                    - path.startsWith("/.well-known/")
+                    - path.startsWith("/nodeinfo/")
+                    - path == "/inbox"
+                    - path == "/site_inbox"
+                    - path == "/actor"
+                    - path.endsWith("/inbox")
+                    - path.endsWith("/outbox")
+                    - '"Accept" in headers && (headers["Accept"].contains("application/activity+json") || headers["Accept"].contains("application/ld+json"))'
+                    - '"Content-Type" in headers && headers["Content-Type"].contains("application/activity+json")'
+              - import: (data)/meta/default-config.yaml
+            store:
+              backend: valkey
+              parameters:
+                url: "redis://anubis-dragonfly.security.svc:6379/3"
     service:
       anubis:
         primary: true
