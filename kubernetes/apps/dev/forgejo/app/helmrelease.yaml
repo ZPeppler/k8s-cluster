@@ -65,11 +65,11 @@ spec:
           adminGroup: sys-admin@idm.fade-lab.com
           scopes: profile email groups
     extraVolumes:
-      - name: gruvbox-theme
+      - name: gruvbox-material-theme
         configMap:
           name: forgejo-gruvbox-theme
     extraContainerVolumeMounts:
-      - name: gruvbox-theme
+      - name: gruvbox-material-theme
         mountPath: /data/gitea/public/assets/css
         readOnly: true
     httpRoute:

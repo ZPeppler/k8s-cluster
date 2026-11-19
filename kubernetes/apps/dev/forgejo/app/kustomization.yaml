@@ -8,6 +8,8 @@ resources:
 configMapGenerator:
   - name: forgejo-gruvbox-theme
     files:
-      - resources/themes-gruvbox-material.css
+      - themes-gruvbox-material.css=./resources/themes-gruvbox-material.css
 generatorOptions:
   disableNameSuffixHash: true
+  annotations:
+    kubernetes.toolkit.fluxcd.io/substitute: disabled
