@@ -5,3 +5,9 @@ resources:
   - ./httproute.yaml
   - ./externalsecret.yaml
   - ./helmrelease.yaml
+configMapGenerator:
+  - name: forgejo-gruvbox-theme
+    files:
+      - resources/themes-gruvbox-material.css
+generatorOptions:
+  disableNameSuffixHash: true

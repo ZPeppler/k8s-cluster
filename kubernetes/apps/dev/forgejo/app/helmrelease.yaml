@@ -56,6 +56,9 @@ spec:
         service:
           DISABLE_REGISTRATION: false
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
+        ui:
+          DEFAULT_THEME: gruvbox-material
+          THEMES: forgejo-auto,forgejo-light,forgejo-dark,auto,gitea,arc-green,gruvbox-material
       oauth:
         - name: kanidm
           provider: openidConnect
@@ -64,14 +67,14 @@ spec:
           groupClaimName: groups
           adminGroup: sys-admin@idm.fade-lab.com
           scopes: profile email groups
-    # extraVolumes:
-    #   - name: forgejo-themes
-    #     secret:
-    #       secretName: forgejo-themes
-    # extraVolumeMounts:
-    #   - name: forgejo-themes
-    #     readOnly: true
-    #     mountPath: "/data/gitea/public/assets/css"
+    extraVolumes:
+      - name: gruvbox-theme
+        configMap:
+          name: forgejo-gruvbox-theme
+    extraContainerVolumeMounts:
+      - name: gruvbox-theme
+        mountPath: /data/gitea/public/assets/css
+        readOnly: true
     httpRoute:
       enabled: false
     image:
