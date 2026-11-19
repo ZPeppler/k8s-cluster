@@ -5,11 +5,10 @@ metadata:
   name: &app anubis
   namespace: &namespace security
 spec:
-  components:
-    - ../../../../components/dragonfly
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  path: ./kubernetes/apps/security/anubis/app
   postBuild:
     substitute:
       APP: *app
