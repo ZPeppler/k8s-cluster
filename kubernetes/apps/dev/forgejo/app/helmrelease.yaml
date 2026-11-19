@@ -58,7 +58,7 @@ spec:
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
         ui:
           DEFAULT_THEME: forgejo-auto
-          THEMES: forgejo-auto, forgejo-light, forgejo-dark, gitea-auto, gitea-light, gitea-dark, forgejo-auto-deuteranopia-protanopia, forgejo-light-deuteranopia-protanopia, forgejo-dark-deuteranopia-protanopia, forgejo-auto-tritanopia, forgejo-light-tritanopia, forgejo-dark-tritanopia
+          THEMES: forgejo-auto, forgejo-light, forgejo-dark, gruvbox-material
       oauth:
         - name: kanidm
           provider: openidConnect
@@ -67,6 +67,14 @@ spec:
           groupClaimName: groups
           adminGroup: sys-admin@idm.fade-lab.com
           scopes: profile email groups
+    extraContainerVolumeMounts:
+      - name: forgejo-themes
+        mountPath: /data/gitea/public/assets/css
+        readOnly: true
+    extraVolumes:
+      - name: forgejo-themes
+        configMap:
+          name: forgejo-themes
     httpRoute:
       enabled: false
     image:
