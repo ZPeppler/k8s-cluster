@@ -64,6 +64,8 @@ spec:
           ROOT_URL: https://git.fade-lab.com
           SSH_DOMAIN: git.fade-lab.com
           SSH_PORT: &sshPort 22
+          SSH_SERVER_HOST_KEYS: ssh/ssh_host_ed25519_key
+          SSH_SERVER_USE_PROXY_PROTOCOL: true
         service:
           DISABLE_REGISTRATION: false
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
