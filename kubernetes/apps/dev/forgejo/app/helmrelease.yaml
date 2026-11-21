@@ -21,7 +21,7 @@ spec:
         passwordMode: keepUpdated
       config:
         APP_NAME: "Code-forge of Fade-Lab"
-        APP_SLOGAN: "Bear the grumpy code-smith"
+        APP_SLOGAN: "Beware the grumpy code-smith"
         cache:
           ENABLED: true
           ADAPTER: redis
