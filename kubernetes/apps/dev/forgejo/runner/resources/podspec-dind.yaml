@@ -1,4 +1,6 @@
 ---
+spec:
+  serviceAccountName: forgejo-runner
 initContaines:
   - name: dind
     image: docker:29-dind

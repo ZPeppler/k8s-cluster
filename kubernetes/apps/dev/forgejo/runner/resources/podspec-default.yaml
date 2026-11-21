@@ -1,4 +1,6 @@
 ---
+spec:
+  serviceAccountName: forgejo-runner
 containers:
   - env:
       - name: DEBIAN_FRONTEND
