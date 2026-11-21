@@ -128,7 +128,7 @@ spec:
             - apiGroups:
                 - ""
               resources:
-                - pods/logs
+                - pods/log
               verbs:
                 - get
                 - list
