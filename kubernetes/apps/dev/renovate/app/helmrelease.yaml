@@ -29,7 +29,7 @@ spec:
         enabled: true
     policy:
       enabled: true
-      allowHosts:
+      allowedHosts:
         - git.fade-lab.com
         - github.com
     route:
