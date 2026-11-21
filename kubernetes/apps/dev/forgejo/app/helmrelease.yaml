@@ -21,6 +21,7 @@ spec:
         passwordMode: keepUpdated
       config:
         cache:
+          ENABLED: true
           ADAPTER: redis
           HOST: redis://forgejo-dragonfly:6379/0
         cron.update_mirrors:
@@ -31,6 +32,8 @@ spec:
           HOST: forgejo-postgres-rw:5432
           NAME: *app
           USER: *app
+        lfs:
+          PATH: /data/git/lfs
         mirror:
           ENABLED: true
           DEFAULT_INTERVAL: 10m
@@ -47,17 +50,34 @@ spec:
           ROOT: /data/git/repositories
         repository.pull-request:
           DEFAULT_MERGE_STYLE: squash
+        repository.signing:
+          FORMAT: ssh
+          SIGNING_KEY: /data/signing/ed25519.pub
+          SIGNING_NAME: git.fade-lab.com Forgejo
+          SIGNING_EMAIL: noreply@git.fade-lab.com
+          INITIAL_COMMIT: pubkey
+          CRUD_ACTIONS: pubkey, parentsigned
+          WIKI: never
+          MERGES: pubkey
         server:
           APP_DATA_PATH: /data/gitea
           ROOT_URL: https://git.fade-lab.com
           SSH_DOMAIN: git.fade-lab.com
           SSH_PORT: &sshPort 22
-        session:
-          PROVIDER: redis
-          PROVIDER_CONFIG: redis://forgejo-dragonfly:6379/1
         service:
           DISABLE_REGISTRATION: false
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
+          ENABLE_INTERNAL_SIGNIN: false
+          ENABLE_PASSWORD_SIGNING_FORM: flase
+          SHOW_REGISTRATION_BUTTON: false
+        service.explore:
+          DISABLE_CODE_PAGE: false
+          DISABLE_ORGANIZATIONS_PAGE: false
+          DISABLE_USERS_PAGE: false
+          REQUIRE_SIGNIN_VIEW: false
+        session:
+          PROVIDER: redis
+          PROVIDER_CONFIG: redis://forgejo-dragonfly:6379/1
         ui:
           DEFAULT_THEME: gruvbox-material
           THEMES: forgejo-auto, forgejo-light, forgejo-dark, gruvbox-material
@@ -70,10 +90,21 @@ spec:
           adminGroup: sys-admin@idm.fade-lab.com
           scopes: profile email groups
     extraContainerVolumeMounts:
+      - name: signing-key
+        mountPath: /data/signing
+        readOnly: true
       - name: forgejo-themes
         mountPath: /data/gitea/public/assets/css
         readOnly: true
+    extraInitVolumeMounts:
+      - name: signing-key
+        mountPath: /data/signing
+        readOnly: true
     extraVolumes:
+      - name: signing-key
+        secret:
+          secretName: forgejo-signing-key
+          defaultMode: 0400
       - name: forgejo-themes
         configMap:
           name: forgejo-themes
