@@ -50,6 +50,8 @@ spec:
         server:
           APP_DATA_PATH: /data/gitea
           ROOT_URL: https://git.fade-lab.com
+          SSH_DOMAIN: git.fade-lab.com
+          SSH_PORT: &sshPort 22
         session:
           PROVIDER: redis
           PROVIDER_CONFIG: redis://forgejo-dragonfly:6379/1
@@ -94,3 +96,15 @@ spec:
       enabled: false
     redis-cluster:
       enabled: false
+    service:
+      ssh:
+        port: *sshPort
+    tcpRoute:
+      enabled: true
+      parentRefs:
+        - name: envoy-external
+          namespace: network
+          sectionName: ssh
+        - name: envoy-external
+          namespace: network
+          sectionName: ssh-proxy
