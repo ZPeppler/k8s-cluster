@@ -27,6 +27,11 @@ spec:
         enabled: true
       dashboard:
         enabled: true
+    policy:
+      enabled: true
+      allowHosts:
+        - git.fade-lab.com
+        - github.com
     route:
       enabled: true
       hostnames:
