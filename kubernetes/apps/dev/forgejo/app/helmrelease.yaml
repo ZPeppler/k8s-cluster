@@ -20,10 +20,17 @@ spec:
         email: info@fade-lab.com
         passwordMode: keepUpdated
       config:
+        APP_NAME: "Code-forge of Fade-Lab"
+        APP_SLOGAN: "Bear the grumpy code-smith"
         cache:
           ENABLED: true
           ADAPTER: redis
           HOST: redis://forgejo-dragonfly:6379/0
+        cron.archive_cleanup:
+          ENABLED: true
+          RUN_AT_START: true
+          SCHEDULE: "@every 1h"
+          OLDER_THAN: 2h
         cron.update_mirrors:
           ENABLED: true
           SCHEDULE: "@every 10m"
@@ -32,6 +39,9 @@ spec:
           HOST: forgejo-postgres-rw:5432
           NAME: *app
           USER: *app
+        indexer:
+          ISSUE_INDEXER_TYPE: bleve
+          REPO_INDEXER_ENABLED: true
         lfs:
           PATH: /data/git/lfs
         mirror:
@@ -83,6 +93,10 @@ spec:
         ui:
           DEFAULT_THEME: gruvbox-material
           THEMES: forgejo-auto, forgejo-light, forgejo-dark, gruvbox-material
+        ui.meta:
+          AUTHOR: zpeppler
+        webhook:
+          ALLOW_HOST_LIST: "*"
       oauth:
         - name: kanidm
           provider: openidConnect
