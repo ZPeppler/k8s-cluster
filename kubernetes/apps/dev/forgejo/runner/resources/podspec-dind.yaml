@@ -1,7 +1,6 @@
 ---
-spec:
-  serviceAccountName: forgejo-runner
-initContaines:
+serviceAccountName: forgejo-runner
+initContainers:
   - name: dind
     image: docker:29-dind
     args:
