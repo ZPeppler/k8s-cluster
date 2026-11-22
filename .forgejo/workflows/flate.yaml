@@ -14,8 +14,6 @@ concurrency:
   group: ${{ forgejo.workflow }}-${{ forgejo.event.number || forgejo.ref }}
   cancel-in-progress: true
 
-permissions: {}
-
 jobs:
   filter:
     name: Flate - Filter
