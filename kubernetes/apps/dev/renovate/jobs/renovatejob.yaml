@@ -30,7 +30,7 @@ spec:
     - name: renovate-data
       mountPath: /data
   # renovate: datasource=docker depName=ghcr.io/renovatebot/renovate
-  image: ghcr.io/renovatebot/renovate:44.257.8
+  image: ghcr.io/renovatebot/renovate:44.257.9
   parallelism: 5
   provider:
     name: forgejo
