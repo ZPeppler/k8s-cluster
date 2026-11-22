@@ -6,26 +6,45 @@ metadata:
   name: renovate-github
 spec:
   discoveryFilters:
-    - "ZPeppler/k8s-cluster"
-  provider:
-    name: github
+    - "zpeppler/k8s-cluster"
   extraEnv:
     - name: LOG_LEVEL
-      value: debug
+      value: info
     - name: RENOVATE_ALLOWED_UNSAFE_EXECUTIONS
       value: '["goGenerate", "mise"]'
     - name: RENOVATE_ALLOWED_COMMANDS
       value: '["^helm-docs ", "^helm-schema "]'
+    - name: RENOVATE_BASE_DIR
+      value: /data
+    - name: RENOVATE_BRANCH_PREFIX
+      value: renovate-
     - name: RENOVATE_REDIS_URL
       value: redis://renovate-operator-dragonfly.dev.svc.cluster.local:6379/1
+    - name: RENOVATE_REPOSITORY_CACHE
+      value: "enabled"
+  extraVolumes:
+    - name: renovate-data
+      persistentVolumeClaim:
+        claimName: renovate-jobs-pvc
+  extraVolumeMounts:
+    - name: renovate-data
+      mountPath: /data
   # renovate: datasource=docker depName=ghcr.io/renovatebot/renovate
   image: ghcr.io/renovatebot/renovate:44.257.8
   parallelism: 5
+  provider:
+    name: forgejo
+    endpoint: https://git.fade-lab.com/api/v1
   resources:
     requests:
       cpu: 100m
       memory: 128Mi
   schedule: 0 * * * *
-  secretRef: renovate-bot-token
+  secretRef: renovate
   webhook:
     enabled: true
+    authentication:
+      enabled: true
+      secretRef:
+        name: renovate
+        key: WEBHOOK_TOKEN

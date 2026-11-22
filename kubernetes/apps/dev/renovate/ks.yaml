@@ -44,10 +44,16 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/storage
   dependsOn:
     - name: renovate-operator
   interval: 1h
   path: "./kubernetes/apps/dev/renovate/jobs"
+  postbuild:
+    substitute:
+      APP: *app
+      APP_REQUEST: 5Gi
   prune: true
   sourceRef:
     kind: OCIRepository
