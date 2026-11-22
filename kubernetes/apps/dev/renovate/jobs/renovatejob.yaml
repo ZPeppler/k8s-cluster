@@ -6,7 +6,7 @@ metadata:
   name: renovate-gleanerbot
 spec:
   discoveryFilters:
-    - "zpeppler/k8s-cluster"
+    - "zpeppler/*"
   extraEnv:
     - name: LOG_LEVEL
       value: info
