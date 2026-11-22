@@ -31,7 +31,6 @@ spec:
       enabled: true
       allowedHosts:
         - git.fade-lab.com
-        - github.com
     route:
       enabled: true
       hostnames:
