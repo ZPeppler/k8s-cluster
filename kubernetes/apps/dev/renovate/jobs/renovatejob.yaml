@@ -3,7 +3,7 @@
 apiVersion: renovate-operator.mogenius.com/v1alpha1
 kind: RenovateJob
 metadata:
-  name: renovate-github
+  name: renovate-gleanerbot
 spec:
   discoveryFilters:
     - "zpeppler/k8s-cluster"
