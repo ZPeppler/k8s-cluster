@@ -17,6 +17,13 @@ spec:
       statusChecks: true
     secret:
       existingSecret: konflate
+    httpRoute:
+      enabled: true
+      hostnames:
+        - konflate.fade-lab.com
+      parentRefs:
+        - name: envoy-external
+          namespace: network
     monitoring:
       serviceMonitor:
         enabled: true
