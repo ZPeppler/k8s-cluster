@@ -11,7 +11,7 @@ spec:
   rules:
     - backendRefs:
         - name: *app
-          namespace: self-hosted
+          namespace: dev
           port: 8080
       matches:
         - path:
