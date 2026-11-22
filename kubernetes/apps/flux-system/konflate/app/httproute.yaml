@@ -13,3 +13,28 @@ spec:
         - name: konflate
           namespace: flux-system
           port: 8080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: konflate-hooks
+spec:
+  hostnames:
+    - konflate.fade-lab.com
+  parentRefs:
+    - name: envoy-external
+      namespace: network
+  rules:
+    - backendRefs:
+        - name: konflate
+          namespace: flux-system
+          port: 8080
+      matches:
+        - path:
+            type: Exact
+            value: /hooks
+          method: POST
+        - path:
+            type: RegularExpression
+            value: ^/api/prs/[0-9]+/refresh$
+          method: POST
