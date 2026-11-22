@@ -79,8 +79,8 @@ spec:
         service:
           DISABLE_REGISTRATION: false
           ALLOW_ONLY_EXTERNAL_REGISTRATION: true
-          ENABLE_INTERNAL_SIGNIN: false
-          ENABLE_PASSWORD_SIGNING_FORM: flase
+          # ENABLE_INTERNAL_SIGNIN: false
+          # ENABLE_PASSWORD_SIGNING_FORM: false
           SHOW_REGISTRATION_BUTTON: false
         service.explore:
           DISABLE_CODE_PAGE: false
