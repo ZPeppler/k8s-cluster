@@ -5,6 +5,7 @@ components:
   - ../../components/namespace
 resources:
   - ./apoci/ks.yaml
+  - ./docsify/ks.yaml
   - ./foundryvtt/ks.yaml
   - ./it-tools/ks.yaml
   - ./searxng/ks.yaml
