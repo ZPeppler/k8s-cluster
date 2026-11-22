@@ -7,20 +7,20 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  components:
-    - ../../../../components/envoy/securitypolicy
-    - ../../../../components/kanidm
+  # components:
+  #   - ../../../../components/envoy/securitypolicy
+  #   - ../../../../components/kanidm
   interval: 1h
   path: ./kubernetes/apps/flux-system/konflate/app
-  postBuild:
-    substitute:
-      APP: *app
-      ENVOY_SUBDOMAIN: *app
-      KANIDM_APP_ICON: https://raw.githubusercontent.com/home-operations/konflate/d562d621ad972b11e41e16e10a8d950d6d56a5a5/internal/web/public/favicon.svg
-      KANIDM_CLIENT_SECRET: client-secret
-      KANIDM_GROUP: k8s-admin
-      KANIDM_ORIGIN_HOST: *app
-      KANIDM_REDIRECT_PATH: oauth2/callback
+  # postBuild:
+  #   substitute:
+  #     APP: *app
+  #     ENVOY_SUBDOMAIN: *app
+  #     KANIDM_APP_ICON: https://raw.githubusercontent.com/home-operations/konflate/d562d621ad972b11e41e16e10a8d950d6d56a5a5/internal/web/public/favicon.svg
+  #     KANIDM_CLIENT_SECRET: client-secret
+  #     KANIDM_GROUP: k8s-admin
+  #     KANIDM_ORIGIN_HOST: *app
+  #     KANIDM_REDIRECT_PATH: oauth2/callback
   prune: true
   sourceRef:
     kind: OCIRepository
