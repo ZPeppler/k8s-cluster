@@ -10,24 +10,19 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: oci-push-${{ github.ref }}
+  group: oci-push-${{ forgejo.ref }}
   cancel-in-progress: true
 
 jobs:
   push-sign:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     env:
       OCI_REPO: oci://registry.fade-lab.com/k8s-cluster
       OCI_USER: registry
       OCI_PASS: ${{ secrets.APOCI_SECRET_KEY }}
     steps:
       - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-          fetch-depth: 0
+        uses: https://data.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - uses: fluxcd/flux2/action@3fa784edd773d56630bb9f62645e08f70c2cff0a
 
@@ -37,17 +32,17 @@ jobs:
           DIGEST_URL=$(flux push artifact \
             ${OCI_REPO}:${{ github.sha }} \
             --path=. \
-            --source=${{ github.server_url }}/${{ github.repository }} \
-            --revision=${GITHUB_REF_NAME}@sha1:${{ github.sha }} \
+            --source=${{ forgejo.server_url }}/${{ forgejo.repository }} \
+            --revision=${{ forgejo.ref_name }}@sha1:${{ forgejo.sha }} \
             --creds=${OCI_USER}:${OCI_PASS} \
             --output json | \
             jq -r '.repository + "@" + .digest')
-          echo "digest-url=$DIGEST_URL" >> "$GITHUB_OUTPUT"
+          echo "digest-url=$DIGEST_URL" >> "$FORGEJO_OUTPUT"
 
       - name: Tag mutable ref
         if: github.ref == 'refs/heads/main'
         run: |
-          flux tag artifact ${OCI_REPO}:${{ github.sha }} --tag main \
+          flux tag artifact ${OCI_REPO}:${{ forgejo.sha }} --tag main \
             --creds=${OCI_USER}:${OCI_PASS}
 
       - uses: sigstore/cosign-installer@756fe2d284c7292c4e9b62c8a28f1e5629c59532
