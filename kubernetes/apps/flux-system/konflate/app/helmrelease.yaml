@@ -11,6 +11,7 @@ spec:
   values:
     config:
       repo: forgejo://git.fade-lab.com/zpeppler/k8s-cluster
+      refreshInterval: 5m
       publicUrl: https://konflate.fade-lab.com
       mcp: true
       prComments: true
