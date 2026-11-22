@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: https://data.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - uses: fluxcd/flux2/action@3fa784edd773d56630bb9f62645e08f70c2cff0a
+      # - uses: fluxcd/flux2/action@3fa784edd773d56630bb9f62645e08f70c2cff0a
 
       - name: Push OCI Artifact
         id: push
@@ -40,12 +40,12 @@ jobs:
           echo "digest-url=$DIGEST_URL" >> "$FORGEJO_OUTPUT"
 
       - name: Tag mutable ref
-        if: github.ref == 'refs/heads/main'
+        if: forgejo.ref == 'refs/heads/main'
         run: |
           flux tag artifact ${OCI_REPO}:${{ forgejo.sha }} --tag main \
             --creds=${OCI_USER}:${OCI_PASS}
 
-      - uses: sigstore/cosign-installer@756fe2d284c7292c4e9b62c8a28f1e5629c59532
+      # - uses: sigstore/cosign-installer@756fe2d284c7292c4e9b62c8a28f1e5629c59532
 
       - name: Sign OCI artifact
         env:
