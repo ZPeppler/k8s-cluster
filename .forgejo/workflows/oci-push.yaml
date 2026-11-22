@@ -63,8 +63,6 @@ jobs:
   reconcile:
     runs-on: ubuntu-latest
     needs: push-sign
-    permissions:
-      contents: read
     steps:
       - name: Trigger FluxCD reconciliation
         env:
