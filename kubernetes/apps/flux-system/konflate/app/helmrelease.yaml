@@ -22,7 +22,7 @@ spec:
       hostnames:
         - konflate.fade-lab.com
       parentRefs:
-        - name: envoy-external
+        - name: envoy-internal
           namespace: network
     monitoring:
       serviceMonitor:
