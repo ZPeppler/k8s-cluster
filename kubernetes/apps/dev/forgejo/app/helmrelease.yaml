@@ -96,9 +96,7 @@ spec:
         ui.meta:
           AUTHOR: zpeppler
         webhook:
-          ALLOW_HOST_LIST:
-            - renovate.dev.svc
-            - konflate.flux-system.dev
+          ALLOW_HOST_LIST: "*"
       oauth:
         - name: kanidm
           provider: openidConnect
