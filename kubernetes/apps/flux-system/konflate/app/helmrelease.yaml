@@ -10,11 +10,13 @@ spec:
   interval: 1h
   values:
     config:
-      repo: github://zpeppler/k8s-cluster
+      repo: forgejo://zpeppler/k8s-cluster
       publicUrl: https://konflate.fade-lab.com
       mcp: true
       prComments: true
       statusChecks: true
+    secret:
+      existingSecret: konflate
     monitoring:
       serviceMonitor:
         enabled: true
