@@ -69,10 +69,10 @@ spec:
                 action: ALLOW
                 expression:
                   all:
-                    - userAgent.startsWith("git/")
+                    - 'userAgent.startsWith("git/") || userAgent.contains ("go-git")'
                     - path.matches("^/.+\\.git/(info/refs|git-upload-pack|git-receive-pack)$")
               - name: allow-api
-                path_regex: ^/api/
+                path_regex: ^/api/.*
                 action: ALLOW
               - import: (data)/apps/gitea-rss-feeds.yaml
               - import: (data)/clients/git.yaml
