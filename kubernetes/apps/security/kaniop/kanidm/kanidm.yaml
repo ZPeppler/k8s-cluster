@@ -19,6 +19,8 @@ spec:
         - database
         - reindex
       env:
+        - name: TZ
+          value: America/New_York
         - name: KANIDM_DOMAIN
           value: idm.fade-lab.com
         - name: KANIDM_ORIGIN
@@ -70,3 +72,11 @@ spec:
       validation:
         hostname: idm.fade-lab.com
         wellKnownCaCertificates: System
+  volumes:
+    - name: custom-css
+      configMap:
+        name: kanidm-theme
+  volumeMounts:
+    - name: custom-css
+      mountPath: /hpkg/override.css
+      subPath: override.css

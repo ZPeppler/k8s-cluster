@@ -7,3 +7,9 @@ resources:
   - ./kanidm.yaml
   - ./persons.yaml
   - ./rbac.yaml
+configMapGenerator:
+  - name: kanidm-theme
+    files:
+      - override.css=./resources/themes/gruvbox-kanidm.css
+generatorOptions:
+  disableNameSuffixHash: true

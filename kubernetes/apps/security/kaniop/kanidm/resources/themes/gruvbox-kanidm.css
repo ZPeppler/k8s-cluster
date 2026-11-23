@@ -1,0 +1,233 @@
+
+/*
+ * Kanidm — Gruvbox Material Dark (Medium)
+ * Palette: Gruvbox Material
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* Backgrounds */
+  --gb-bg: #282828;
+  --gb-bg0: #282828;
+  --gb-bg1: #32302f;
+  --gb-bg2: #3c3836;
+  --gb-bg3: #45403d;
+  --gb-bg4: #504945;
+
+  /* Foreground */
+  --gb-fg: #d4be98;
+  --gb-fg0: #ddc7a1;
+  --gb-fg1: #c9b99a;
+  --gb-grey: #928374;
+
+  /* Accents */
+  --gb-red: #ea6962;
+  --gb-green: #a9b665;
+  --gb-yellow: #d8a657;
+  --gb-blue: #7daea3;
+  --gb-purple: #d3869b;
+  --gb-aqua: #89b482;
+  --gb-orange: #e78a4e;
+
+  /* Semantic colors */
+  --background: var(--gb-bg);
+  --foreground: var(--gb-fg);
+  --border: var(--gb-bg3);
+  --muted: var(--gb-bg2);
+  --accent: var(--gb-green);
+}
+
+/* Base */
+html,
+body {
+  background-color: var(--gb-bg) !important;
+  color: var(--gb-fg) !important;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+}
+
+/* Text */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gb-fg0);
+}
+
+p, label, span {
+  color: inherit;
+}
+
+/* Links */
+a {
+  color: var(--gb-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--gb-aqua);
+  text-decoration: underline;
+}
+
+/* Surfaces and containers */
+.card,
+.panel,
+.modal,
+dialog,
+section {
+  background-color: var(--gb-bg1);
+  border-color: var(--gb-bg3);
+  color: var(--gb-fg);
+}
+
+/* Navigation */
+nav,
+header {
+  background-color: var(--gb-bg1);
+  border-color: var(--gb-bg3);
+  color: var(--gb-fg);
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  background-color: var(--gb-bg);
+  color: var(--gb-fg);
+  border: 1px solid var(--gb-bg3);
+  border-radius: 6px;
+  accent-color: var(--gb-green);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--gb-green);
+  box-shadow: 0 0 0 2px #a9b66533;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--gb-grey);
+}
+
+/* Buttons */
+button,
+input[type="button"],
+input[type="submit"] {
+  background-color: var(--gb-bg3);
+  color: var(--gb-fg);
+  border: 1px solid var(--gb-bg4);
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background-color: var(--gb-bg4);
+  border-color: var(--gb-green);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gb-green);
+  outline-offset: 2px;
+}
+
+/* Primary actions */
+button[type="submit"],
+input[type="submit"] {
+  background-color: var(--gb-green);
+  color: var(--gb-bg);
+  border-color: var(--gb-green);
+  font-weight: 600;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background-color: var(--gb-aqua);
+  border-color: var(--gb-aqua);
+}
+
+/* Tables */
+table {
+  border-color: var(--gb-bg3);
+  color: var(--gb-fg);
+}
+
+th {
+  background-color: var(--gb-bg2);
+  color: var(--gb-fg0);
+}
+
+td {
+  border-color: var(--gb-bg3);
+}
+
+/* Separators */
+hr,
+.divider {
+  border-color: var(--gb-bg3);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--gb-bg4);
+  color: var(--gb-fg0);
+}
+
+/* Checkboxes and toggles */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--gb-green);
+}
+
+/* Disabled controls */
+button:disabled,
+input:disabled,
+select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Scrollbars */
+* {
+  scrollbar-color: var(--gb-bg4) var(--gb-bg);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--gb-bg);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--gb-bg4);
+  border-radius: 8px;
+}
+
+/* Status colors */
+.success,
+.text-success {
+  color: var(--gb-green);
+}
+
+.warning,
+.text-warning {
+  color: var(--gb-yellow);
+}
+
+.error,
+.text-error {
+  color: var(--gb-red);
+}
+
+.info,
+.text-info {
+  color: var(--gb-blue);
+}
