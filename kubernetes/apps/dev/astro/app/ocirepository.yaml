@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: searxng
+  name: astro
 spec:
   interval: 15m
   layerSelector:
