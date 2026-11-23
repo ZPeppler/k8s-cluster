@@ -20,7 +20,7 @@ spec:
           app:
             image:
               repository: registry.fade-lab.com/lab-docs
-              tag: latest
+              tag: latest@sha256:effd6853321d39792ef2e2c673359000d3dd0c80ca16317ac88d9cf5cb3176ed
             ports:
               - containerPort: &http 80
                 name: http
