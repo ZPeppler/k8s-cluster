@@ -4,7 +4,7 @@ namespace: dev
 components:
   - ../../components/namespace
 resources:
-  - ./docsify/ks.yaml
+  - ./astro/ks.yaml
   - ./forgejo/ks.yaml
   - ./renovate/ks.yaml
   - ./toolbox/ks.yaml
