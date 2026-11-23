@@ -21,19 +21,32 @@ spec:
             image:
               repository: registry.fade-lab.com/lab-docs
               tag: latest
+            ports:
+              - containerPort: &http 80
+                name: http
             probes:
-              liveness: &probes
+              liveness:
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /stats
-                    port: 80
+                    path: /healthz
+                    port: *http
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 2
                   failureThreshold: 3
-              readiness: *probes
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /readyz
+                    port: *http
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 2
+                  failureThreshold: 3
     persistence:
       tpmfs:
         type: emptyDir
@@ -45,5 +58,5 @@ spec:
         controller: *app
         ports:
           http:
-            port: 80
+            port: *http
             targetPort: 8080
