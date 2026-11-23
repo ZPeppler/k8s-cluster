@@ -31,7 +31,7 @@ spec:
                 spec:
                   httpGet:
                     path: /healthz
-                    port: *http
+                    port: http
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 2
@@ -42,7 +42,7 @@ spec:
                 spec:
                   httpGet:
                     path: /readyz
-                    port: *http
+                    port: http
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 2
@@ -58,5 +58,5 @@ spec:
         controller: *app
         ports:
           http:
-            port: *http
-            targetPort: 8080
+            port: 8080
+            targetPort: *http
