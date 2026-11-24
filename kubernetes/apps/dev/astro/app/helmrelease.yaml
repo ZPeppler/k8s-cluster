@@ -51,6 +51,26 @@ spec:
                   periodSeconds: 10
                   timeoutSeconds: 2
                   failureThreshold: 3
+    rbac:
+      roles:
+        astro:
+          forceRename: *app
+          type: Role
+          rules:
+            - apiGroups: [""]
+              resources: ["configmaps"]
+              verbs: &manageVerbs ["get", "create", "patch", "update"]
+            - apiGroups: ["apps"]
+              resources: ["deployments"]
+              verbs: *manageVerbs
+      bindings:
+        astro:
+          forceRename: *app
+          type: RoleBinding
+          roleRef:
+            identifier: *app
+          subjects:
+            - identifier: *app
     persistence:
       tpmfs:
         type: emptyDir
