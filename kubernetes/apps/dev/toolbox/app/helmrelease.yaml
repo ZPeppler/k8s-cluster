@@ -47,7 +47,7 @@ spec:
           subjects:
             - identifier: *app
         toolbox-view:
-          forceRename: *app
+          forceRename: toolbox-view
           type: ClusterRoleBinding
           roleRef:
             identifier: view
