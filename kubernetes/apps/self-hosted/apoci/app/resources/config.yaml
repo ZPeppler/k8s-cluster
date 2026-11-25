@@ -27,9 +27,12 @@ gc:
       - "v*"
       - "*.*.*"
     perRepo:
-      - repo: "fade-lab.com/zpeppler/k8s-cluster"
+      - repo: "registry.fade-lab.com/k8s-cluster"
         keepLastN: 7
-        maxAge: 24h
+      - repo: "registry.fade-lab.com/lab-docs"
+        keepLastN: 7
+      - repo: "registry.fade-lab.com/toolbox"
+        keepLastN: 7
 
 metrics:
   enabled: true
