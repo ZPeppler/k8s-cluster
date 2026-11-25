@@ -14,18 +14,48 @@ spec:
   #     valuesKey: tag
   #     targetPath: controllers.toolbox.containers.app.image.tag
   values:
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsGroup: 1000
+        runAsUser: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
     controllers:
-      astro:
+      toolblox:
         annotations:
           reloader.stakater.com/auto: "true"
         enabled: true
         type: deployment
         replicas: 1
         containers:
-          app:
+          toolbox:
             image:
               repository: registry.fade-lab.com/zpepp-toolbox
               tag: latest@sha256:c29b7e1c281c66794c1be63a2691fc66d24bf73ca608bf5c17e76a322a32192d
+            command: ["sleep", "infinity"]
+            env:
+              HOME: /home/toolbox
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
+            probes:
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  exec:
+                    command: ["sh", "-c", "command -v kubectl"]
+            resources:
+              requests:
+                cpu: 10m
+                memory: 64Mi
+              limits:
+                memory: 1Gi
+        serviceAccount: *app
     rbac:
       roles:
         toolbox:
@@ -59,3 +89,7 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /tmp
+      home:
+        type: emptyDir
+        globalMounts:
+          - path: /home/toolbox
