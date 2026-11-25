@@ -1,4 +1,3 @@
-
 /*
  * Kanidm — Gruvbox Material Dark (Medium)
  * Palette: Gruvbox Material
@@ -50,11 +49,18 @@ body {
 }
 
 /* Text */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--gb-fg0);
 }
 
-p, label, span {
+p,
+label,
+span {
   color: inherit;
 }
 

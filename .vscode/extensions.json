@@ -5,6 +5,7 @@
     "redhat.vscode-yaml",
     "signageos.signageos-vscode-sops",
     "hverlin.mise-vscode",
-    "oxc.oxc-vscode"
+    "oxc.oxc-vscode",
+    "navernoedenis.gruvbox-material-icons"
   ]
 }
