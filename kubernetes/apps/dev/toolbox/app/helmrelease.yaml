@@ -55,7 +55,6 @@ spec:
                 memory: 64Mi
               limits:
                 memory: 1Gi
-        serviceAccount: *app
     rbac:
       roles:
         toolbox:
