@@ -52,3 +52,9 @@ releases:
     inherit:
       - template: default
     needs: ["flux-system/flux-operator"]
+
+  - name: external-secrets
+    namespace: external-secrets
+    inherit:
+      - template: default
+    needs: ["cert-manager/cert-manager"]
