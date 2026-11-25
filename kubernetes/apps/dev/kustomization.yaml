@@ -7,4 +7,4 @@ resources:
   - ./astro/ks.yaml
   - ./forgejo/ks.yaml
   - ./renovate/ks.yaml
-  - ./toolbox/ks.yaml
+  # - ./toolbox/ks.yaml
