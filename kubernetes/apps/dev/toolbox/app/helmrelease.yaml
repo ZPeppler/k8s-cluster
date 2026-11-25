@@ -50,7 +50,8 @@ spec:
           forceRename: toolbox-view
           type: ClusterRoleBinding
           roleRef:
-            identifier: view
+            kind: ClusterRole
+            name: view
           subjects:
             - identifier: *app
     persistence:
