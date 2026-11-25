@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app toolbox
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: *app
+  # valuesFrom:
+  #   - kind: ConfigMap
+  #     name: toolbox-version
+  #     valuesKey: tag
+  #     targetPath: controllers.toolbox.containers.app.image.tag
+  values:
+    controllers:
+      astro:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        enabled: true
+        type: deployment
+        replicas: 1
+        containers:
+          app:
+            image:
+              repository: registry.fade-lab.com/zpepp-toolbox
+              tag: latest@sha256:c29b7e1c281c66794c1be63a2691fc66d24bf73ca608bf5c17e76a322a32192d
+    rbac:
+      roles:
+        toolbox:
+          forceRename: *app
+          type: Role
+          rules:
+            - apiGroups: [""]
+              resources: ["configmaps"]
+              verbs: &manageVerbs ["get", "create", "patch", "update"]
+            - apiGroups: ["apps"]
+              resources: ["deployments"]
+              verbs: *manageVerbs
+      bindings:
+        toolbox:
+          forceRename: *app
+          type: RoleBinding
+          roleRef:
+            identifier: *app
+          subjects:
+            - identifier: *app
+        toolbox-view:
+          forceRename: *app
+          type: ClusterRoleBinding
+          roleRef:
+            identifier: view
+          subjects:
+            - identifier: *app
+    persistence:
+      tpmfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp

@@ -18,8 +18,6 @@ jobs:
   filter:
     name: Flate - Filter
     runs-on: ubuntu-latest
-    outputs:
-      any-changed: ${{ steps.changed-files.outputs.any_changed }}
     steps:
       - name: Checkout
         uses: https://data.forgejo.org/actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -31,6 +29,8 @@ jobs:
         uses: https://github.com/tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96 # v47.0.6
         with:
           files: kubernetes/**
+    outputs:
+      any-changed: ${{ steps.changed-files.outputs.any_changed }}
 
   flate:
     if: ${{ needs.filter.outputs.any-changed == 'true' }}
