@@ -9,11 +9,11 @@ spec:
   oauth2ClientNamespaceSelector: {}
   personNamespaceSelector: {}
   serviceAccountNamespaceSelector: {}
-  image: docker.io/kanidm/server:1.12.2@sha256:7308499f88134575cd2bd9c7f75755ae525a1f1a4601f2d5892a74a7a766a322
+  image: docker.io/kanidm/server:1.12.2@sha256:555618fc71aa5cbbacf0041136f8a5430615ee215d677386594726abcc18dbf0
   logLevel: info
   initContainers:
     - name: kanidm-reindex
-      image: docker.io/kanidm/server:1.12.2@sha256:7308499f88134575cd2bd9c7f75755ae525a1f1a4601f2d5892a74a7a766a322
+      image: docker.io/kanidm/server:1.12.2@sha256:555618fc71aa5cbbacf0041136f8a5430615ee215d677386594726abcc18dbf0
       command:
         - kanidmd
         - database
