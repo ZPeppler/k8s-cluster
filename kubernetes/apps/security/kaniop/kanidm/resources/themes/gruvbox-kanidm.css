@@ -4,7 +4,6 @@
  */
 
 :root {
-  --forge-logo: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><polygon points='32,4 56.25,18 56.25,46 32,60 7.75,46 7.75,18' fill='#282828' stroke='#e78a4e' stroke-width='4' stroke-linejoin='miter'/><path d='M32 12 C36 17 40 20 40 24 C40 27.5 36.5 28 32 28 C27.5 28 24 27.5 24 24 C24 21 27 19 28 16 C29 18 30 18.5 31 18.5 C30.5 16 31 14 32 12 Z' fill='#d8a657'/><path transform='translate(8.4 11.75) scale(0.75)' d='M8 27 Q16 27 20 21 H55 V29 H47 Q45 35 40 37 V43 H46 V49 H18 V43 H24 V37 Q19 35 17 31 Q12 31 8 27 Z' fill='#e78a4e'/></svg>");
   color-scheme: dark;
 
   /* Backgrounds */
@@ -237,15 +236,4 @@ select:disabled {
 .info,
 .text-info {
   color: var(--gb-blue);
-}
-
-img.navbar-toggler-img,
-img[src^="/pkg/img/logo.svg"]{
-  content: var(--forge-logo);
-  object-fit: contain;
-}
-
-img[src^="/pkg/img/kani-waving.svg"]{
-  content: var(--forge-logo);
-  object-fit: contain;
 }
