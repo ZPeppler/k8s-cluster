@@ -68,6 +68,9 @@ spec:
               - name: allow-git-smart-http
                 action: ALLOW
                 expression: path.matches("^/[^/]+/[^/]+/(info/refs|git-upload-pack|git-receive-pack)$")
+              - name: allow-git-lfs
+                action: ALLOW
+                expression: path.matches("^/[^/]+/[^/]+/info/lfs/.*$")
               - import: (data)/apps/gitea-rss-feeds.yaml
               - import: (data)/clients/git.yaml
               - import: (data)/clients/docker-client.yaml
