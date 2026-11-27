@@ -8,6 +8,6 @@ spec:
   layerSelector:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
-  url: oci://code.forgejo.org/forgejo-helm/forgejo
   ref:
     tag: 17.3.3
+  url: oci://code.forgejo.org/forgejo-helm/forgejo
