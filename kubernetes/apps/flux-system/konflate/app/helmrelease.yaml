@@ -20,11 +20,11 @@ spec:
       existingSecret: konflate
     httpRoute:
       enabled: false
-      # hostnames:
-      #   - konflate.fade-lab.com
-      # parentRefs:
-      #   - name: envoy-external
-      #     namespace: network
+      hostnames:
+        - konflate.fade-lab.com
+      parentRefs:
+        - name: envoy-external
+          namespace: network
     monitoring:
       serviceMonitor:
         enabled: true
