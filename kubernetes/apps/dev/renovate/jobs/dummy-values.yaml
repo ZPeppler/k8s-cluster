@@ -20,3 +20,12 @@ stringData:
   KANIDM_LEGALNAME: Test User
   KANIDM_USERNAME: test_user
 type: Opaque
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: astro-version
+  namespace: dev
+data:
+  tag: >-
+    dummyvalue@sha256:thesevaluesarejusttoensurerenovatewillpass
