@@ -4,9 +4,12 @@ kind: HelmRelease
 metadata:
   name: k8s-gateway
 spec:
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: k8s-gateway
+    spec:
+      ref:
+        tag: 4.0.1
+      url: oci://codeberg.org/k8s-gateway/charts/k8s-gateway
   interval: 1h
   values:
     fullnameOverride: k8s-gateway

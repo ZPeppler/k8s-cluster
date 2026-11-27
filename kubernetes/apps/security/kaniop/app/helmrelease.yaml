@@ -1,12 +1,14 @@
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: kaniop
 spec:
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: kaniop
+    spec:
+      ref:
+        tag: "0.25.0"
+      url: oci://ghcr.io/pando85/helm-charts/kaniop
   interval: 30m
   values:
     deploymentAnnotations:

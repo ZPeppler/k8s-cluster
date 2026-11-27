@@ -3,9 +3,12 @@ kind: HelmRelease
 metadata:
   name: &app headlamp
 spec:
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: headlamp
+    spec:
+      ref:
+        tag: 0.46.0
+      url: oci://ghcr.io/home-operations/charts-mirror/headlamp
   interval: 30m
   valuesFrom:
     - kind: Secret

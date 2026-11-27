@@ -4,6 +4,5 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./httproute.yaml
-  - ./ocirepository.yaml
   - ./networks.yaml
   # - ./securitypolicy.yaml
