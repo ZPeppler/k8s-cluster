@@ -65,6 +65,9 @@ spec:
         data:
           policy.yaml: |-
             bots:
+              - name: allow-git-smart-http
+                action: ALLOW
+                expression: path.matches("^/[^/]+/[^/]+/(info/refs|git-upload-pack|git-receive-pack)$")
               - import: (data)/apps/gitea-rss-feeds.yaml
               - import: (data)/clients/git.yaml
               - import: (data)/clients/docker-client.yaml
