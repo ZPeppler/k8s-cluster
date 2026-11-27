@@ -29,3 +29,10 @@ metadata:
 data:
   tag: >-
     dummyvalue@sha256:thesevaluesarejusttoensurerenovatewillpass
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cert-manager-secret
+stringData:
+  api-token: ddfasdflajsdfljsdasdfas
