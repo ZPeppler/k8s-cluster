@@ -30,9 +30,26 @@ data:
   tag: >-
     dummyvalue@sha256:thesevaluesarejusttoensurerenovatewillpass
 ---
-apiVersion: v1
 kind: Secret
+apiVersion: v1
 metadata:
-  name: cert-manager-secret
+  name: flux-operator-kanidm-oauth2-credentials
+  namespace: flux-system
 stringData:
-  api-token: ddfasdflajsdfljsdasdfas
+  CLIENT_ID: exampledata
+  CLIENT_SECRET: exampledata
+  key: exampledata
+  secret: exampledata
+type: Opaque
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: headlamp-kanidm-oauth2-credentials
+  namespace: observability
+stringData:
+  CLIENT_ID: exampledata
+  CLIENT_SECRET: exampledata
+  key: exampledata
+  secret: exampledata
+type: Opaque
