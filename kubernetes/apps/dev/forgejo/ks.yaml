@@ -6,7 +6,7 @@ metadata:
   namespace: &namespace dev
 spec:
   components:
-    # - ../../../../components/anubis
+    - ../../../../components/anubis
     - ../../../../components/cnpg/pg18
     - ../../../../components/dragonfly
     - ../../../../components/kanidm
@@ -19,7 +19,7 @@ spec:
     substitute:
       APP: *app
       APP_REQUEST: 100Gi
-      #ANUBIS_TARGET: "http://forgejo-http.dev.svc:3000"
+      ANUBIS_TARGET: "http://forgejo-http.dev.svc:3000"
       CNPG_INSTANCES: "3"
       CNPG_MEMORY_LIMIT: 2Gi
       KANIDM_APP_ICON: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/forgejo.svg
