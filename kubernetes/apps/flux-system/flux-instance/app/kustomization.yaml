@@ -5,6 +5,5 @@ resources:
   - ./externalsecret.yaml
   - ./grafanadashboard.yaml
   - ./helmrelease.yaml
-  # - ./secret.sops.yaml
   - ./httproute.yaml
   - ./receiver.yaml

@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - ./clusterissuer.yaml
   - ./helmrelease.yaml
-  # - ./secret.sops.yaml
   - ./externalsecret.yaml
