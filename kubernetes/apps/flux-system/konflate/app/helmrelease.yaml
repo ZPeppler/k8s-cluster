@@ -8,12 +8,13 @@ spec:
     kind: OCIRepository
     spec:
       ref:
-        tag: 0.6.6
+        tag: 0.7.0
       url: oci://ghcr.io/home-operations/charts/konflate
   interval: 1h
   values:
     config:
       repo: forgejo://git.fade-lab.com/zpeppler/k8s-cluster
+      clusterPath: "./kubernetes/flux/cluster"
       refreshInterval: 5m
       publicUrl: https://konflate.fade-lab.com
       mcp: true
