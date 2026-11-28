@@ -4,9 +4,12 @@ kind: HelmRelease
 metadata:
   name: cloudflare-tunnel
 spec:
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: cloudflare-tunnel
+    spec:
+      ref:
+        tag: 5.3.0
+      url: oci://ghcr.io/bjw-s-labs/helm/app-template
   interval: 1h
   values:
     controllers:

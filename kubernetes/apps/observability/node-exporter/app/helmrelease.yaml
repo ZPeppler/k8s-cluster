@@ -5,9 +5,12 @@ kind: HelmRelease
 metadata:
   name: node-exporter
 spec:
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: node-exporter
+    spec:
+      ref:
+        tag: 6.0.0
+      url: oci://ghcr.io/prometheus-community/charts/prometheus-node-exporter
   interval: 30m
   timeout: 15m
   values:

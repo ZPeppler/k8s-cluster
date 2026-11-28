@@ -27,31 +27,6 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app kanidm-secrets
-  namespace: flux-system
-spec:
-  targetNamespace: security
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
-  interval: 30m
-  path: ./kubernetes/apps/security/kaniop/external-secrets
-  postBuild:
-    substitute:
-      APP: *app
-  prune: true
-  retryInterval: 1m
-  sourceRef:
-    kind: OCIRepository
-    name: flux-system
-    namespace: flux-system
-  timeout: 5m
-  wait: true
----
-# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
   name: &app kanidm
   namespace: flux-system
 spec:
@@ -61,8 +36,6 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: kaniop
-      namespace: security
-    - name: kanidm-secrets
       namespace: security
     - name: rook-ceph-cluster
       namespace: rook-ceph

@@ -6,5 +6,4 @@ resources:
   # - ./alertmanagerconfig.yaml
   - ./grafanadatasource.yaml
   - ./grafanadashboard.yaml
-  - ./ocirepository.yaml
   - ./helmrelease.yaml

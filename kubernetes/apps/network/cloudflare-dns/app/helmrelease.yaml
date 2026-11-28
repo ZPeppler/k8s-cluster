@@ -4,9 +4,12 @@ kind: HelmRelease
 metadata:
   name: &app cloudflare-dns
 spec:
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: cloudflare-dns
+    spec:
+      ref:
+        tag: 1.24.0
+      url: oci://ghcr.io/home-operations/charts-mirror/external-dns
   interval: 1h
   values:
     fullnameOverride: *app

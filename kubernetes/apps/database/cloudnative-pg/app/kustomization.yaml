@@ -4,4 +4,3 @@ resources:
   - ./grafanadashboard.yaml
   - ./grafanafolder.yaml
   - ./helmrelease.yaml
-  - ./ocirepository.yaml

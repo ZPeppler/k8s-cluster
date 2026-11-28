@@ -20,3 +20,36 @@ stringData:
   KANIDM_LEGALNAME: Test User
   KANIDM_USERNAME: test_user
 type: Opaque
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: astro-version
+  namespace: dev
+data:
+  tag: >-
+    dummyvalue@sha256:thesevaluesarejusttoensurerenovatewillpass
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: flux-operator-kanidm-oauth2-credentials
+  namespace: flux-system
+stringData:
+  CLIENT_ID: exampledata
+  CLIENT_SECRET: exampledata
+  key: exampledata
+  secret: exampledata
+type: Opaque
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: headlamp-kanidm-oauth2-credentials
+  namespace: observability
+stringData:
+  CLIENT_ID: exampledata
+  CLIENT_SECRET: exampledata
+  key: exampledata
+  secret: exampledata
+type: Opaque

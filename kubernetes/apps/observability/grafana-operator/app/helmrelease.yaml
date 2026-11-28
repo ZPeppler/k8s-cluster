@@ -5,9 +5,12 @@ kind: HelmRelease
 metadata:
   name: grafana-operator
 spec:
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: grafana-operator
+    spec:
+      ref:
+        tag: 5.26.0
+      url: oci://ghcr.io/grafana/helm-charts/grafana-operator
   interval: 30m
   values:
     dashboard:
